@@ -8,6 +8,7 @@ export default {
   theme: {
     extend: {
       colors: {
+        neonBlue: "#a3e5ff",
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
