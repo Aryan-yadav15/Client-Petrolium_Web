@@ -7,3 +7,32 @@ body {
     font-family: var(--font-tajawal), sans-serif;
   }
   
+  /* Custom scrollbar styling for Chrome, Edge, and Safari */
+.flex::-webkit-scrollbar {
+  height: 8px; /* Adjust scrollbar height */
+}
+
+.flex::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Track color */
+  border-radius: 8px;
+}
+
+.flex::-webkit-scrollbar-thumb {
+  background: #888; /* Thumb color */
+  border-radius: 8px;
+}
+
+.flex::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Thumb hover color */
+}
+
+/* Firefox scrollbar styling */
+.flex {
+  scrollbar-width: thin;
+  scrollbar-color: #0eadd4 #f1f1f1;
+}
+
+
+.text-shadow {
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+}
