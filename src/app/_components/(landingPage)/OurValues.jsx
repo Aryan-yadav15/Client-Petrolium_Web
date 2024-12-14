@@ -7,6 +7,7 @@ const OurValues = () => {
       style={{
         backgroundImage: "url('/image/values.jpg')",
         backgroundAttachment: "fixed",
+        backgroundPosition: "bottom center", // Change this to adjust the position
       }}
     >
       {/* Overlay */}
@@ -26,7 +27,7 @@ const OurValues = () => {
         {/* CTA */}
         <a
           href="/contact"
-          className="bg-blue-500 hover:bg-blue-600 text-white py-3 px-6 rounded-md text-lg font-medium transition duration-300"
+          className="bg-neonBlue hover:bg-sky-400 text-gray-800 py-3 px-6 rounded-md text-lg font-medium transition duration-300"
         >
           Contact Us Today
         </a>

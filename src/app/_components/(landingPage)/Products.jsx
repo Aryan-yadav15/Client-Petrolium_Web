@@ -11,17 +11,17 @@ const Products = () => {
         <div className="bg-neonBlue inline-block p-1 px-4 rounded-md">
           <span className="font-semibold">Products</span>
         </div>
-        <h1 className="text-4xl font-bold mb-2 mt-4">Environmental protection</h1>
+        <h1 className="text-4xl font-bold mb-2 mt-4">Our Product Range</h1>
         <p className="text-gray-700 text-lg mb-8">
-          As our business operations expand, so do the actions we undertake
-          aimed at protecting ecosystems and supporting the energy and materials
-          transitions.
+          We offer a diverse range of high-quality products designed to meet the
+          needs of various industries. Our products are known for their
+          reliability, efficiency, and performance.
         </p>
         <a
           href="#"
-          className="text-blue-500 font-medium flex items-center mb-12 hover:underline"
+          className="text-sky-400 font-medium flex items-center mb-12 hover:underline"
         >
-          View Full →
+          View All Products →
         </a>
 
         {/* Horizontal Scrollable Product Cards */}
@@ -34,7 +34,7 @@ const Products = () => {
             {products.map((product, index) => (
               <motion.div
                 key={index}
-                className="flex-shrink-0 w-[300px] bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden mb-4"
+                className="flex-shrink-0 w-[300px] bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden mb-4 hover:scale-105 transition-all"
               >
                 {/* Image Placeholder */}
                 <div className="h-48 bg-gray-200 flex items-center justify-center">
@@ -52,7 +52,7 @@ const Products = () => {
                   </p>
                   <a
                     href="#"
-                    className="text-blue-500 text-sm font-medium hover:underline"
+                    className="text-sky-400 text-sm font-medium hover:underline"
                   >
                     Read more →
                   </a>

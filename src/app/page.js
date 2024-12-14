@@ -4,6 +4,7 @@ import AboutUs from "./_components/(landingPage)/AboutUs";
 import Highlights from "./_components/(landingPage)/Highlights";
 import Products from "./_components/(landingPage)/Products";
 import OurValues from "./_components/(landingPage)/OurValues";
+import Footer from "./_components/(landingPage)/Footer";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
         <Highlights/>
         <Products/>
         <OurValues/>
+        <Footer/>
       </div>
     </>
   );

@@ -4,9 +4,27 @@ import { useState, useEffect } from "react";
 
 // Define the image array with names
 const images = [
-  { src: "/image/homeSlider/img1.jpg", name: "Image 1 Name" }, // Replace with your image paths and names
-  { src: "/image/homeSlider/img2.jpg", name: "Image 2 Name" },
-  { src: "/image/homeSlider/img3.jpg", name: "Image 3 Name" },
+  {
+    src: "/image/homeSlider/img3.jpg",
+    name: "LDO",
+    title: "Light Diesel Oil",
+    subheading:
+      "High efficiency fuel for industrial applications. Suitable for a wide range of engines. Low sulfur content for cleaner emissions.",
+  },
+  {
+    src: "/image/homeSlider/img2.jpg",
+    name: "Furnace Oil",
+    title: "Furnace Oil",
+    subheading:
+      "Reliable and cost-effective heating solution. Ideal for industrial heating systems. High calorific value for efficient combustion.",
+  },
+  {
+    src: "/image/homeSlider/img1.jpg",
+    name: "MTO",
+    title: "Mineral Turpentine Oil",
+    subheading:
+      "Versatile solvent for various industries. Excellent solvency power. Used in paints, varnishes, and thinners.",
+  },
 ];
 
 const ImageSlider = () => {
@@ -51,23 +69,58 @@ const ImageSlider = () => {
   return (
     <div className="relative w-full h-[98vh] overflow-hidden rounded-3xl">
       {/* Slider Wrapper */}
-      <div className="relative w-full h-full">
+      <div className="relative w-full h-full bg-black">
         <AnimatePresence mode="wait">
-          <motion.img
-            key={currentIndex}
-            src={images[currentIndex].src}
-            alt={`Slide ${currentIndex}`}
-            className="absolute w-full h-full object-cover"
-            initial={{ opacity: 0, x: 100 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -100 }}
-            transition={{ duration: 0.6 }}
-          />
+          <div className="relative w-full h-full">
+            <motion.img
+              key={currentIndex}
+              src={images[currentIndex].src}
+              alt={`Slide ${currentIndex}`}
+              className="absolute w-full h-full object-cover"
+              initial={{ opacity: 0, x: 10 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 10, x: -100 }}
+              transition={{ duration: 1 }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/60"></div>
+            <div className="absolute inset-0 bg-gradient-to-l from-transparent to-black/60"></div>
+            <div className="absolute top-[40%] px-20 z-30 text-black ">
+              <div className="overflow-hidden ">
+                <motion.div
+                  className="text-gray-200 text-6xl font-bold flex flex-col gap-4 items-start"
+                  key={currentIndex}
+                  initial={{ opacity: 0, y: 100 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -100 }}
+                  transition={{ duration: 0.6 }}
+                >
+                  <h1>{images[currentIndex].title}</h1>
+                </motion.div>
+              </div>
+              <div className="overflow-hidden pt-4">
+                <motion.div
+                  className="text-gray-200 text-6xl font-bold flex flex-col  items-start"
+                  key={currentIndex.toString() + "subheading"}
+                  initial={{ opacity: 40, y: 100 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 40, y: -100 }}
+                  transition={{ duration: 0.6 }}
+                >
+                  <span className="text-lg font-thin w-[50vw]">
+                    {images[currentIndex].subheading}
+                  </span>
+                  <span className="text-neonBlue text-lg font-thin w-[50vw]">
+                    Vies full {"->"}
+                  </span>
+                </motion.div>
+              </div>
+            </div>
+          </div>
         </AnimatePresence>
       </div>
 
       {/* Image Names and Progress Bars */}
-      <div className="absolute flex flex-row justify-evenly bottom-4 left-0 w-full px-4">
+      <div className="absolute flex flex-row justify-evenly bottom-4 left-0 w-full px-4 bg-[linear] ">
         {images.map((image, index) => (
           <div key={index} className="flex flex-col items-start mb-4 w-80">
             {/* Image Name */}
@@ -79,13 +132,9 @@ const ImageSlider = () => {
               {image.name}
             </div>
             {/* Progress Bar */}
-            <div className="w-full h-2 bg-gray-700 rounded-lg overflow-hidden mt-2">
+            <div className="relative w-full h-1 bg-gray-700 rounded-full overflow-hidden">
               <motion.div
-                className={`h-full ${
-                  currentIndex === index
-                    ? "bg-gradient-to-r from-green-500 to-blue-500"
-                    : "bg-transparent"
-                }`}
+                className="absolute top-0 left-0 h-full bg-gradient-to-r from-emerald-400 to-blue-500"
                 style={{
                   width: currentIndex === index ? `${progress}%` : "0%",
                 }}
@@ -93,7 +142,7 @@ const ImageSlider = () => {
                 animate={{
                   width: currentIndex === index ? `${progress}%` : "0%",
                 }}
-                transition={{ duration: 0.5 }}
+                transition={{ duration: 1 }}
               />
             </div>
           </div>
@@ -102,6 +151,7 @@ const ImageSlider = () => {
 
       {/* Navigation Buttons */}
       {/*
+                
       <div className="absolute top-1/2 left-0 right-0 flex justify-between transform -translate-y-1/2 px-4">
         <button
           onClick={prevSlide}
