@@ -67,7 +67,7 @@ const ImageSlider = () => {
   };
 
   return (
-    <div className="relative w-full h-[98vh] overflow-hidden rounded-3xl">
+    <div className="relative w-full h-[98vh] overflow-hidden rounded-b-3xl">
       {/* Slider Wrapper */}
       <div className="relative w-full h-full bg-black">
         <AnimatePresence mode="wait">
