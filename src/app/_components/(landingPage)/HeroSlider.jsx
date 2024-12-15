@@ -84,7 +84,7 @@ const ImageSlider = () => {
             />
             <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/60"></div>
             <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/60"></div>
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-20 z-30 text-black text-center bg-gray-800 bg-opacity-60 backdrop-blur-md p-10 rounded-3xl">
+            <div className="absolute top-[65%] left-1/2 -translate-x-1/2 -translate-y-1/2 lg:px-20 z-30 text-black text-center bg-gray-800 bg-opacity-60 backdrop-blur-md p-10 rounded-3xl">
               <div className="overflow-hidden">
                 <motion.div
                   className="text-gray-200 text-6xl font-bold flex flex-col gap-4 "
@@ -99,17 +99,17 @@ const ImageSlider = () => {
               </div>
               <div className="overflow-hidden pt-4">
                 <motion.div
-                  className="text-gray-200 text-6xl font-bold flex flex-col items-start"
+                  className="text-gray-200 text-6xl font-bold flex flex-col items-start "
                   key={currentIndex.toString() + "subheading"}
                   initial={{ opacity: 40, y: 100 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 40, y: -100 }}
                   transition={{ duration: 0.6 }}
                 >
-                  <span className="text-lg font-thin w-[50vw]">
+                  <span className="text-lg font-thin w-[70vw] lg:w-[50vw]">
                     {images[currentIndex].subheading}
                   </span>
-                  <span className="text-neonBlue text-lg font-thin w-[50vw]">
+                  <span className="text-neonBlue pl-14 text-lg font-thin w-[50vw]">
                     View full  →
                   </span>
                 </motion.div>

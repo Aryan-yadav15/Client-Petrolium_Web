@@ -3,7 +3,7 @@ import React from "react";
 const AboutUs = () => {
   return (
     <div className="w-full pt-20 pb-4">
-      <div className="flex flex-row bg-white p-6 rounded-xl border-gray-200">
+      <div className="flex flex-col lg:flex-row bg-white p-6 rounded-xl border-gray-200">
         <section className="flex flex-row flex-1">
           <div className="flex-row">
             <div className="bg-neonBlue inline-block p-1 px-4 rounded-md">
