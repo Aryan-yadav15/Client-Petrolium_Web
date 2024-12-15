@@ -67,7 +67,7 @@ const ImageSlider = () => {
   };
 
   return (
-    <div className="relative w-full h-[98vh] overflow-hidden rounded-b-3xl">
+    <div className="relative w-full h-[100vh] overflow-hidden ">
       {/* Slider Wrapper */}
       <div className="relative w-full h-full bg-black">
         <AnimatePresence mode="wait">
@@ -110,7 +110,7 @@ const ImageSlider = () => {
                     {images[currentIndex].subheading}
                   </span>
                   <span className="text-neonBlue pl-14 text-lg font-thin w-[50vw]">
-                    View full  →
+                    View full →
                   </span>
                 </motion.div>
               </div>
@@ -120,33 +120,29 @@ const ImageSlider = () => {
       </div>
 
       {/* Image Names and Progress Bars */}
-      <div className="absolute flex flex-row justify-evenly bottom-4 left-1/2 transform -translate-x-1/2 w-[30rem] px-4 gap-10 bg-[linear] bg-black/50 pt-4 rounded-3xl">
-        {images.map((image, index) => (
-          <div key={index} className="flex flex-col items-start mb-4 w-80">
-            {/* Image Name */}
-            {/* <div
-        className={`text-sm font-semibold ${
-          currentIndex === index ? "text-white" : "text-gray-400"
-        }`}
-      >
-        {image.name}
-      </div> */}
-            {/* Progress Bar */}
-            <div className="relative w-full h-1 bg-gray-700 rounded-full overflow-hidden">
-              <motion.div
-                className="absolute top-0 left-0 h-full bg-gradient-to-r from-neonBlue to-blue-500"
-                style={{
-                  width: currentIndex === index ? `${progress}%` : "0%",
-                }}
-                initial={{ width: "0%" }}
-                animate={{
-                  width: currentIndex === index ? `${progress}%` : "0%",
-                }}
-                transition={{ duration: 1 }}
-              />
-            </div>
+      {/* Progress Bar Section */}
+      <div className="absolute bottom-4 left-0 right-0 flex justify-center px-4 z-40">
+        <div className="w-full max-w-[30rem] bg-black/50 rounded-3xl py-4 px-4">
+          <div className="flex flex-row justify-evenly space-x-2 sm:space-x-4">
+            {images.map((image, index) => (
+              <div key={index} className="flex-1 min-w-0 max-w-full">
+                <div className="relative w-full h-1 bg-gray-700 rounded-full overflow-hidden">
+                  <motion.div
+                    className="absolute top-0 left-0 h-full bg-gradient-to-r from-neonBlue to-blue-500"
+                    style={{
+                      width: currentIndex === index ? `${progress}%` : "0%",
+                    }}
+                    initial={{ width: "0%" }}
+                    animate={{
+                      width: currentIndex === index ? `${progress}%` : "0%",
+                    }}
+                    transition={{ duration: 1 }}
+                  />
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
 
       {/* Navigation Buttons */}

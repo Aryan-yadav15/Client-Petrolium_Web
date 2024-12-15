@@ -18,14 +18,14 @@ const Products = () => {
           <span className="font-semibold">Products</span>
         </div>
         <h1 className="text-4xl font-bold mb-2 mt-4">Our Product Range</h1>
-        <p className="text-gray-700 text-lg mb-8">
+        <p className="text-gray-700 text-lg">
           We offer a diverse range of high-quality products designed to meet the
           needs of various industries. Our products are known for their
           reliability, efficiency, and performance.
         </p>
         <a
           href="#"
-          className="text-sky-400 font-medium flex items-center mb-12 hover:underline"
+          className="text-sky-400 font-medium flex items-center mb-4 hover:underline"
         >
           View All Products →
         </a>
