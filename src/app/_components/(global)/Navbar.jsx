@@ -20,7 +20,7 @@ const Navbar = () => {
 
   return (
     <div className="relative z-50">
-      <div className="fixed top-0 w-full h-[10vh] bg-gray-800 bg-opacity-60 backdrop-blur-md px-20 py-2">
+      <div className="fixed top-0 w-full h-16 bg-gray-800 bg-opacity-60 backdrop-blur-md px-20 py-2">
         <div className="flex flex-row justify-between items-center">
           {/* Logo Section */}
           <section>
@@ -42,9 +42,9 @@ const Navbar = () => {
       </div>
 
       {/* Scroll Progress Bar */}
-      <div className="fixed top-[10vh] left-0 w-full h-1 bg-transparent">
+      <div className="fixed top-16 left-0 w-full h-1 bg-transparent">
         <div
-          className="h-full bg-gradient-to-r from-emerald-400 to-blue-500"
+          className="h-full bg-gradient-to-r from-neonBlue to-blue-500"
           style={{ width: `${scrollProgress}%` }}
         ></div>
       </div>

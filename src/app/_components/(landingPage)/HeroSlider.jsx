@@ -83,11 +83,11 @@ const ImageSlider = () => {
               transition={{ duration: 1 }}
             />
             <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/60"></div>
-            <div className="absolute inset-0 bg-gradient-to-l from-transparent to-black/60"></div>
-            <div className="absolute top-[40%] px-20 z-30 text-black ">
-              <div className="overflow-hidden ">
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/60"></div>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-20 z-30 text-black text-center bg-gray-800 bg-opacity-60 backdrop-blur-md p-10 rounded-3xl">
+              <div className="overflow-hidden">
                 <motion.div
-                  className="text-gray-200 text-6xl font-bold flex flex-col gap-4 items-start"
+                  className="text-gray-200 text-6xl font-bold flex flex-col gap-4 "
                   key={currentIndex}
                   initial={{ opacity: 0, y: 100 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -99,7 +99,7 @@ const ImageSlider = () => {
               </div>
               <div className="overflow-hidden pt-4">
                 <motion.div
-                  className="text-gray-200 text-6xl font-bold flex flex-col  items-start"
+                  className="text-gray-200 text-6xl font-bold flex flex-col items-start"
                   key={currentIndex.toString() + "subheading"}
                   initial={{ opacity: 40, y: 100 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -110,7 +110,7 @@ const ImageSlider = () => {
                     {images[currentIndex].subheading}
                   </span>
                   <span className="text-neonBlue text-lg font-thin w-[50vw]">
-                    Vies full {"->"}
+                    View full  →
                   </span>
                 </motion.div>
               </div>
@@ -120,21 +120,21 @@ const ImageSlider = () => {
       </div>
 
       {/* Image Names and Progress Bars */}
-      <div className="absolute flex flex-row justify-evenly bottom-4 left-0 w-full px-4 bg-[linear] ">
+      <div className="absolute flex flex-row justify-evenly bottom-4 left-1/2 transform -translate-x-1/2 w-[30rem] px-4 gap-10 bg-[linear] bg-black/50 pt-4 rounded-3xl">
         {images.map((image, index) => (
           <div key={index} className="flex flex-col items-start mb-4 w-80">
             {/* Image Name */}
-            <div
-              className={`text-sm font-semibold ${
-                currentIndex === index ? "text-white" : "text-gray-400"
-              }`}
-            >
-              {image.name}
-            </div>
+            {/* <div
+        className={`text-sm font-semibold ${
+          currentIndex === index ? "text-white" : "text-gray-400"
+        }`}
+      >
+        {image.name}
+      </div> */}
             {/* Progress Bar */}
             <div className="relative w-full h-1 bg-gray-700 rounded-full overflow-hidden">
               <motion.div
-                className="absolute top-0 left-0 h-full bg-gradient-to-r from-emerald-400 to-blue-500"
+                className="absolute top-0 left-0 h-full bg-gradient-to-r from-neonBlue to-blue-500"
                 style={{
                   width: currentIndex === index ? `${progress}%` : "0%",
                 }}

@@ -4,29 +4,29 @@ import React from "react";
 const Footer = () => {
   return (
     <div className="pt-10">
-      <footer className="bg-gray-200 text-gray-800 rounded-t-2xl ">
+      <footer className="bg-gray-200 text-gray-800 rounded-t-2xl">
         {/* Main Container */}
-        <div className="max-w-7xl mx-auto py-10 flex flex-row gap-8 justify-between px-10">
+        <div className="max-w-7xl mx-auto py-10 flex flex-col sm:flex-row gap-8 justify-between px-6 sm:px-10">
           {/* Section 1: Branding and Tagline */}
-          <div>
+          <div className="flex-1">
             <div className="flex items-center mb-4">
               <Image
                 src="/logoipsum-311.svg"
-                width={200}
-                height={200}
+                width={150}
+                height={150}
                 alt="Logo"
               />
             </div>
-            <h2 className="text-xl font-bold mb-2">
-              We growing up your business with personal AI manager.
+            <h2 className="text-lg sm:text-xl font-bold mb-2">
+              We are the future of oil & lubricants industry.
             </h2>
-            <p>Maxwell, 2023.</p>
+            <p className="text-sm">Vishveshwar oil, 2025.</p>
           </div>
 
           {/* Section 2: Platform */}
-          <div>
+          <div className="flex-1">
             <h3 className="text-lg font-semibold mb-3">Platform</h3>
-            <ul className="space-y-2">
+            <ul className="space-y-2 text-sm">
               <li>Plans & Pricing</li>
               <li>Personal AI Manager</li>
               <li>AI Business Writer</li>
@@ -34,21 +34,18 @@ const Footer = () => {
           </div>
 
           {/* Section 3: Company and Resources */}
-          <div>
+          <div className="flex-1">
             <h3 className="text-lg font-semibold mb-3">Company</h3>
-            <ul className="space-y-2">
+            <ul className="space-y-2 text-sm">
               <li>Blog</li>
               <li>Careers</li>
               <li>News</li>
             </ul>
-            
           </div>
-
-          {/* Section 4: Get the App */}
         </div>
 
         {/* Bottom Bar */}
-        <div className="bg-neonBlue text-gray-900 text-sm text-center py-3">
+        <div className="bg-neonBlue text-gray-900 text-center py-3 text-xs sm:text-sm">
           <p>
             &copy; 2025 Vishveshwar Oil & Lubricants Pvt Ltd
             <span className="mx-2">|</span>
