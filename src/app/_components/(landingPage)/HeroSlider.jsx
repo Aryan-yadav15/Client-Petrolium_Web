@@ -35,7 +35,7 @@ const ImageSlider = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide();
-    }, 5000);
+    }, 7000);
 
     return () => clearInterval(interval);
   }, []);

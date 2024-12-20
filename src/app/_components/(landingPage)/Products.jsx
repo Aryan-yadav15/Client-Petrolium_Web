@@ -1,15 +1,39 @@
 "use client";
 import { motion } from "framer-motion";
 import { products } from "@/app/lib/products";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
 const Products = () => {
   const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const [activeDot, setActiveDot] = useState(0); // Tracks the active dot
+  const scrollRef = useRef(null); // Ref for the scrollable container
 
   useEffect(() => {
     setIsTouchDevice("ontouchstart" in window || navigator.maxTouchPoints > 0);
   }, []);
+
+  // Handle dot click to scroll to the respective position
+  const handleDotClick = (index) => {
+    const container = scrollRef.current;
+    const cardWidth = container.scrollWidth / products.length; // Calculate width of a single card
+    const scrollPosition = index * cardWidth; // Calculate scroll position
+
+    container.scrollTo({
+      left: scrollPosition,
+      behavior: "smooth", // Smooth scrolling
+    });
+    setActiveDot(index); // Update the active dot
+  };
+
+  // Update active dot when scrolling manually
+  const handleScroll = () => {
+    const container = scrollRef.current;
+    const cardWidth = container.scrollWidth / products.length;
+    const newIndex = Math.round(container.scrollLeft / cardWidth);
+    setActiveDot(newIndex);
+  };
+
   return (
     <section className="py-10">
       <div className="px-8 py-12 bg-white rounded-xl">
@@ -33,9 +57,12 @@ const Products = () => {
         {/* Horizontal Scrollable Product Cards */}
         <div className="relative">
           <motion.div
-            className="scroll-container flex space-x-4 sm:space-x-6 pt-2"
+            ref={scrollRef}
+            className="scroll-container flex space-x-4 sm:space-x-6 pt-2 overflow-x-auto hide-scrollbar"
             drag={isTouchDevice ? false : "x"} // Disable drag on touch devices
             dragConstraints={{ left: -300, right: 0 }}
+            onScroll={handleScroll} // Handle manual scrolling
+            style={{ scrollBehavior: "smooth" }} // Ensure smooth scroll
           >
             {products.map((product, index) => (
               <motion.div
@@ -59,7 +86,7 @@ const Products = () => {
                     <h3 className="text-lg sm:text-xl font-semibold">
                       {product.title}
                     </h3>
-                    <p className="text-gray-300 text-xs sm:text-sm leading-4 line-clamp-2 overflow-hidden text-ellipsis block">
+                    <p className="text-gray-300 text-xs sm:text-sm leading-loose clamp-2 overflow-hidden text-ellipsis block">
                       {product.shortDescription}
                     </p>
                     <a
@@ -73,6 +100,19 @@ const Products = () => {
               </motion.div>
             ))}
           </motion.div>
+
+          {/* Dots Pagination */}
+          <div className="flex justify-center space-x-2 mt-4">
+            {products.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => handleDotClick(index)}
+                className={`w-3 h-3 rounded-full ${
+                  activeDot === index ? "bg-sky-400" : "bg-gray-300"
+                }`}
+              ></button>
+            ))}
+          </div>
         </div>
       </div>
     </section>

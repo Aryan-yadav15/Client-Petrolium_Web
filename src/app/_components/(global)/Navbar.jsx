@@ -1,44 +1,44 @@
-"use client";
-import React, { useState, useEffect } from "react";
+"use client"
+import React, { useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
+import BrentPrice from "./BrentPrice";
+import ScrollProgressBar from "./ScrollProgressBar";
+
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const totalScroll = document.documentElement.scrollTop;
-      const windowHeight =
-        document.documentElement.scrollHeight -
-        document.documentElement.clientHeight;
-      const scroll = totalScroll === 0 
-        ? 0 
-        : `${(totalScroll / windowHeight) * 100}`;
-      
-      setScrollProgress(Number(scroll));
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const NavLinks = ({ mobile = false }) => {
-    const linkClass = mobile 
+    const linkClass = mobile
       ? "text-2xl text-white font-semibold hover:text-gray-300 hover:scale-105 transition-all active:text-gray-500"
       : "hover:text-white hover:scale-110 transition-all cursor-pointer";
 
     return (
       <>
-        <a href="#about" className={linkClass} onClick={() => mobile && setIsOpen(false)}>
+        <a
+          href="#about"
+          className={linkClass}
+          onClick={() => mobile && setIsOpen(false)}
+        >
           About Us
         </a>
-        <a href="#services" className={linkClass} onClick={() => mobile && setIsOpen(false)}>
+        <a
+          href="#services"
+          className={linkClass}
+          onClick={() => mobile && setIsOpen(false)}
+        >
           Services
         </a>
-        <a href="#contact" className={linkClass} onClick={() => mobile && setIsOpen(false)}>
+        <a
+          href="#contact"
+          className={linkClass}
+          onClick={() => mobile && setIsOpen(false)}
+        >
           Contact
         </a>
+        <div className="brent-price-container">
+          <BrentPrice />
+        </div>
       </>
     );
   };
@@ -50,11 +50,7 @@ const Navbar = () => {
         <div className="flex flex-row justify-between items-center">
           {/* Logo Section */}
           <section>
-            <img 
-              src="/logoipsum-311.svg" 
-              alt="Logo" 
-              className="w-auto h-8" 
-            />
+            <img src="/logoipsum-311.svg" alt="Logo" className="w-auto h-8 pt-2" />
           </section>
 
           {/* Desktop Navigation Links */}
@@ -63,7 +59,7 @@ const Navbar = () => {
           </section>
 
           {/* Mobile Hamburger Icon */}
-          <section 
+          <section
             className="md:hidden text-gray-300"
             onClick={() => setIsOpen(!isOpen)}
           >
@@ -73,12 +69,7 @@ const Navbar = () => {
       </div>
 
       {/* Scroll Progress Bar */}
-      <div className="fixed top-16 left-0 w-full h-1 bg-transparent">
-        <div
-          className="h-full bg-gradient-to-r from-neonBlue to-blue-500"
-          style={{ width: `${scrollProgress}%` }}
-        ></div>
-      </div>
+      <ScrollProgressBar />
 
       {/* Mobile Menu */}
       {isOpen && (

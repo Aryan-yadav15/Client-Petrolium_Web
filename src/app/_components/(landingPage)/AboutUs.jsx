@@ -1,4 +1,7 @@
 import React from "react";
+import BrentPrice from "./BrentPrice";
+
+
 
 const AboutUs = () => {
   return (
@@ -33,6 +36,7 @@ const AboutUs = () => {
           </span>
         </section>
       </div>
+      
     </div>
   );
 };

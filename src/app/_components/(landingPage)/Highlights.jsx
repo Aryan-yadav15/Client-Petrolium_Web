@@ -37,15 +37,15 @@ const data = [
   },
 ];
 const Card = React.memo(({ item }) => (
-  <div className="card bg-white shadow-md rounded-2xl flex flex-col items-center text-left flex-grow transform transition-transform duration-300 hover:scale-105 hover:-translate-y-2">
+  <div className="card   rounded-2xl flex flex-col items-center text-left flex-grow transform transition-transform duration-300 hover:scale-105 hover:-translate-y-2">
     <Image
       src={item.image}
       height={400}
       width={400}
-      className="w-full rounded-t-2xl"
+      className="w-full rounded-2xl"
       alt={item.title}
     />
-    <div className="px-6 py-10 flex flex-col justify-between h-full">
+    <div className="pr-4 py-10 flex flex-col justify-between h-full">
       <div>
         <h3 className="text-2xl text-sky-700 font-bold mb-2">{item.title}</h3>
         <p className="text-gray-600 mb-4 text-sm line-clamp-2">{item.description}</p>
