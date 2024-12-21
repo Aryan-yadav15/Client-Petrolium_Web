@@ -2,11 +2,17 @@ export const blogs = [
   {
     id: 1,
     title: "Repurposing CO2 and Harnessing Hydrogen’s Potential",
+    tags: "Energy",
     image: "/image/values.jpg", // Replace with your actual image URL
     description:
       "Explore how Aramco is tackling the challenge of balancing affordable energy demand with carbon reduction through CO2 repurposing and hydrogen innovations.",
     date: "December 15, 2024", // Replace with the actual date of the blog
     link: "/blogs/repurposing-co2", // Adjust link based on your routing
+    readTime: "10 min read",
+    author: {
+      name: "John Doe",
+      avatar: "/image/john-doe.jpg", // Replace with the actual avatar URL
+    },
     content: [
       {
         type: "li",

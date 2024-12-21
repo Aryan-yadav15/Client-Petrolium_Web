@@ -49,6 +49,14 @@ html, body {
   color: red; /* Dynamically toggle color based on condition */
 }
 
+.glass-morph {
+  background: rgba(14, 14, 14, 0.24);
+  border-radius: 10px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
 @layer base {
   :root {
         --background: 0 0% 100%;

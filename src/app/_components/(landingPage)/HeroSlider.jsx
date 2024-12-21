@@ -2,7 +2,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 
-// Define the image array with names
 const images = [
   {
     src: "/image/homeSlider/img3.jpg",
@@ -31,25 +30,23 @@ const ImageSlider = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [progress, setProgress] = useState(0);
 
-  // Automatically move to the next slide every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide();
     }, 7000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [currentIndex]);
 
-  // Progress bar logic
   useEffect(() => {
-    setProgress(0); // Reset progress when the slide changes
+    setProgress(0);
     const progressInterval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(progressInterval);
           return 100;
         }
-        return prev + 2; // Adjust the increment speed for progress bar
+        return prev + 1.5;
       });
     }, 100);
 
@@ -67,60 +64,68 @@ const ImageSlider = () => {
   };
 
   return (
-    <div className="relative w-full h-[100vh] overflow-hidden ">
-      {/* Slider Wrapper */}
-      <div className="relative w-full h-full bg-black">
+    <div className="relative w-full h-screen">
+      {/* Main Slider */}
+      <div className="relative w-full h-full">
         <AnimatePresence mode="wait">
-          <div className="relative w-full h-full">
-            <motion.img
-              key={currentIndex}
+          <motion.div
+            key={currentIndex}
+            className="absolute inset-0"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.7 }}
+          >
+            {/* Image */}
+            <img
               src={images[currentIndex].src}
-              alt={`Slide ${currentIndex}`}
-              className="absolute w-full h-full object-cover"
-              initial={{ opacity: 0, x: 10 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 10, x: -100 }}
-              transition={{ duration: 1 }}
+              alt={images[currentIndex].title}
+              className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/60"></div>
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/60"></div>
-            <div className="absolute top-[65%] left-1/2 -translate-x-1/2 -translate-y-1/2 lg:px-20 z-30 text-black text-center bg-gray-800 bg-opacity-60 backdrop-blur-md p-10 rounded-3xl">
-              <div className="overflow-hidden">
-                <motion.div
-                  className="text-gray-200 text-6xl font-bold flex flex-col gap-4 "
-                  key={currentIndex}
-                  initial={{ opacity: 0, y: 100 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -100 }}
-                  transition={{ duration: 0.6 }}
+
+            {/* Gradients */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/70" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent" />
+
+            {/* Content Container */}
+            <div className="absolute inset-x-0 bottom-32 flex justify-center items-center px-4 sm:px-6 lg:px-8">
+              <motion.div
+                className="w-full max-w-4xl bg-black/40 backdrop-blur-sm rounded-3xl p-6 sm:p-8 lg:p-10"
+                initial={{ y: 50, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.2, duration: 0.5 }}
+              >
+                <motion.h2
+                  className="text-3xl sm:text-4xl lg:text-5xl text-white font-bold mb-4"
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.3, duration: 0.5 }}
                 >
-                  <h1>{images[currentIndex].title}</h1>
-                </motion.div>
-              </div>
-              <div className="overflow-hidden pt-4">
-                <motion.div
-                  className="text-gray-200 text-6xl font-bold flex flex-col items-start "
-                  key={currentIndex.toString() + "subheading"}
-                  initial={{ opacity: 40, y: 100 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 40, y: -100 }}
-                  transition={{ duration: 0.6 }}
+                  {images[currentIndex].title}
+                </motion.h2>
+                <motion.p
+                  className="text-sm sm:text-base lg:text-lg text-gray-200 mb-4 max-w-3xl"
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.4, duration: 0.5 }}
                 >
-                  <span className="text-lg font-thin w-[70vw] lg:w-[50vw]">
-                    {images[currentIndex].subheading}
-                  </span>
-                  <span className="text-neonBlue pl-14 text-lg font-thin w-[50vw]">
-                    View full →
-                  </span>
-                </motion.div>
-              </div>
+                  {images[currentIndex].subheading}
+                </motion.p>
+                <motion.button
+                  className="text-blue-400 hover:text-blue-300 transition-colors duration-200 text-sm sm:text-base flex items-center gap-2"
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.5, duration: 0.5 }}
+                >
+                  View full <span className="text-lg">→</span>
+                </motion.button>
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
         </AnimatePresence>
       </div>
 
-      {/* Image Names and Progress Bars */}
-      {/* Progress Bar Section */}
+      {/* Progress Bars */}
       <div className="absolute bottom-4 left-0 right-0 flex justify-center px-4 z-40">
         <div className="w-full max-w-[30rem] bg-black/50 rounded-3xl py-4 px-4">
           <div className="flex flex-row justify-evenly space-x-2 sm:space-x-4">
@@ -144,25 +149,47 @@ const ImageSlider = () => {
           </div>
         </div>
       </div>
-
       {/* Navigation Buttons */}
-      {/*
-                
-      <div className="absolute top-1/2 left-0 right-0 flex justify-between transform -translate-y-1/2 px-4">
+      <div className="absolute inset-y-0 top-28 left-0 right-0 flex items-center justify-between px-4 sm:px-6 lg:px-8">
         <button
           onClick={prevSlide}
-          className="bg-black/50 text-white p-2 rounded-full hover:bg-black/80 transition"
+          className="p-2 rounded-full bg-black/30 hover:bg-black/50 transition-colors text-white backdrop-blur-sm"
+          aria-label="Previous slide"
         >
-          &lt;
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M15 19l-7-7 7-7"
+            />
+          </svg>
         </button>
         <button
           onClick={nextSlide}
-          className="bg-black/50 text-white p-2 rounded-full hover:bg-black/80 transition"
+          className="p-2 rounded-full bg-black/30 hover:bg-black/50 transition-colors text-white backdrop-blur-sm"
+          aria-label="Next slide"
         >
-          &gt;
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
         </button>
       </div>
-      */}
     </div>
   );
 };

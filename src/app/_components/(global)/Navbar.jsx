@@ -1,9 +1,9 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
 import BrentPrice from "./BrentPrice";
 import ScrollProgressBar from "./ScrollProgressBar";
-
+import Link from "next/link";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -50,7 +50,13 @@ const Navbar = () => {
         <div className="flex flex-row justify-between items-center">
           {/* Logo Section */}
           <section>
-            <img src="/logoipsum-311.svg" alt="Logo" className="w-auto h-8 pt-2" />
+            <Link href="/">
+              <img
+                src="/logoipsum-311.svg"
+                alt="Logo"
+                className="w-auto h-8 pt-2"
+              />
+            </Link>
           </section>
 
           {/* Desktop Navigation Links */}

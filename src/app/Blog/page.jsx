@@ -3,39 +3,74 @@ import React from "react";
 import BrentPrice from "../_components/(global)/BrentPrice";
 import { blogs } from "../lib/blog";
 import Link from "next/link";
+import { ArrowRight, Badge, Clock, User } from "lucide-react";
 
 const BlogPage = () => {
   return (
-    <div className="max-w-7xl mx-auto p-6 px-20">
+    <div className="max-w-7xl mx-auto p-6 sm:px-10 lg:px-20">
       <div className="text-center h-[70vh] flex flex-col justify-center items-center space-y-4">
-        <div className="bg-white flex flex-col p-20 w-full h-[90%] rounded-2xl justify-center items-center">
-          <h1 className="text-7xl font-semibold text-center">
+        <div className="bg-white flex flex-col p-6 sm:p-10 lg:p-20 w-full h-[90%] rounded-2xl justify-center items-center">
+          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-semibold text-center">
             Our Blogs & Articles
           </h1>
-          <BrentPrice />
-          <p className="w-2/4 text-xl">
+          <p className="w-full sm:w-3/4 lg:w-2/4 text-lg sm:text-xl pt-4 sm:pt-6 lg:pt-10">
             Our blog showcases a blend of visual appeal and practical design
             across diverse platforms.
           </p>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-white p-4 rounded-lg py-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2  gap-4 bg-white p-4 rounded-lg py-10">
         {blogs.map((blog) => (
-          <div key={blog.id} className="rounded-lg overflow-hidden">
-            <Image
-              src={"/image/values.jpg"}
-              alt="blog"
-              width={800}
-              height={800}
-              className="object-fill rounded-lg"
-            />
-            <div className="py-6 flex flex-col">
-              <h2 className="text-2xl font-semibold">{blog.title}</h2>
-              <p className="text-gray-700">{blog.description}</p>
-              <Link href={`/Blog/${blog.id}`}>Read more &rarr;</Link>
+          <article
+            key={blog.id}
+            className="group rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300"
+          >
+            <div className="relative h-48 sm:h-64 overflow-hidden">
+              {blog.tags && (
+                <div className="flex gap-2 absolute top-4 left-4 z-10">
+                  {blog.tags.split(",").map((tag, index) => (
+                    <p key={index} className="glass-morph text-gray-200 text-sm font-light px-2 rounded-sm">
+                      {tag}
+                    </p>
+                  ))}
+                </div>
+              )}
+              <Image
+                src={blog.image}
+                alt={blog.title}
+                width={800}
+                height={800}
+                className="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-500 rounded-lg"
+              />
             </div>
-          </div>
+            <div className="py-6 px-2 space-y-1">
+              <div className="flex items-center space-x-4 text-sm text-gray-500">
+                <span className="flex items-center">
+                  <Clock size={16} className="mr-1" />
+                  {blog.readTime || "5 min read"}
+                </span>
+                <span className="flex items-center">
+                  <User size={16} className="mr-1" />
+                  {blog.author?.name || "By Admin"}
+                </span>
+              </div>
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-800 group-hover:text-blue-600 transition-colors">
+                {blog.title}
+              </h2>
+              <p className="text-gray-600 line-clamp-1">{blog.description}</p>
+              <Link
+                href={`/Blog/${blog.id}`}
+                className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium"
+              >
+                Read more
+                <ArrowRight
+                  size={16}
+                  className="ml-1 transform group-hover:translate-x-1 transition-transform"
+                />
+              </Link>
+            </div>
+          </article>
         ))}
       </div>
     </div>

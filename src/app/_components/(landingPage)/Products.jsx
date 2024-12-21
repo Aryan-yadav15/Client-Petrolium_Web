@@ -47,12 +47,12 @@ const Products = () => {
           needs of various industries. Our products are known for their
           reliability, efficiency, and performance.
         </p>
-        <a
+        {/* <a
           href="#"
           className="text-sky-400 font-medium flex items-center mb-4 hover:underline"
         >
           View All Products →
-        </a>
+        </a> */}
 
         {/* Horizontal Scrollable Product Cards */}
         <div className="relative">
@@ -90,7 +90,7 @@ const Products = () => {
                       {product.shortDescription}
                     </p>
                     <a
-                      href="#"
+                      href={`/product/${product.id}`}
                       className="text-sky-400 text-xs sm:text-sm font-medium mt-1 block hover:underline"
                     >
                       Read more →
