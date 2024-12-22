@@ -4,6 +4,8 @@ import { FiMenu, FiX } from "react-icons/fi";
 import BrentPrice from "./BrentPrice";
 import ScrollProgressBar from "./ScrollProgressBar";
 import Link from "next/link";
+import DollarPrice from "./DollarPrice";
+import { AnimatePresence, motion } from "framer-motion";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -37,7 +39,29 @@ const Navbar = () => {
           Contact
         </a>
         <div className="brent-price-container">
-          <BrentPrice />
+          <AnimatePresence>
+            {/* First Element (Brent Price) */}
+            <motion.div
+              key="brent"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <BrentPrice />
+            </motion.div>
+
+            {/* Second Element (Dollar Price) */}
+            <motion.div
+              key="dollar"
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+            >
+              <DollarPrice />
+            </motion.div>
+          </AnimatePresence>
         </div>
       </>
     );

@@ -20,41 +20,39 @@ const useBrentPrice = () => {
         `https://api.jsonbin.io/v3/b/${BIN_ID}/latest`,
         { headers: { "X-Master-Key": API_KEY } }
       );
-
+  
       const jsonBinData = await jsonBinResponse.json();
       console.log("JSONBin Response:", jsonBinData);
-
-      const records = jsonBinData?.record;
-
+  
+      // Correctly access the nested record array
+      const records = jsonBinData?.record?.record;
+  
       if (!records || !Array.isArray(records) || records.length === 0) {
-        console.log(
-          "No valid records found in JSONBin. Fetching fresh data..."
-        );
+        console.log("No valid records found in JSONBin. Fetching fresh data...");
         await fetchAndUpdateNewData();
         return;
       }
-
+  
       const { price: storedPrice, updatedAt } = records[0];
-      const { price: prevStoredPrice, updatedAt: previousUpdate } =
-        records[1] || {};
-
+      const { price: prevStoredPrice, updatedAt: previousUpdate } = records[1] || {};
+  
       console.log("Stored Price:", storedPrice);
       console.log("Previous Price:", prevStoredPrice);
       console.log("Updated At:", updatedAt);
       console.log("Last Updated At:", previousUpdate);
-
+  
       if (!storedPrice || !updatedAt) {
         console.log("Incomplete data in JSONBin. Fetching fresh data...");
         await fetchAndUpdateNewData();
         return;
       }
-
+  
       const oneDay = 24 * 60 * 60 * 1000;
       const lastUpdated = new Date(updatedAt).getTime();
       const previousLastUpdated = new Date(previousUpdate).getTime();
       const currentTime = new Date().getTime();
-
-      if (previousLastUpdated - lastUpdated < oneDay) {
+  
+      if (currentTime - lastUpdated < oneDay) {
         console.log("Using cached price data");
         setPrice(storedPrice);
         setPrevPrice(prevStoredPrice);
@@ -70,19 +68,27 @@ const useBrentPrice = () => {
       setIsLoading(false);
     }
   }, []);
+  
 
   const fetchAndUpdateNewData = async () => {
     try {
+      // Fetch data from the API
       const apiResponse = await fetch(BRENT_API_URL);
       const apiData = await apiResponse.json();
-      console.log(apiData);
-
-      if (!apiData || !apiData.price) {
-        throw new Error("Invalid API response: Missing price data");
+  
+      if (!apiData || !apiData.data || apiData.data.length < 2) {
+        throw new Error("Invalid API response: Missing data for today and yesterday");
       }
-
-      const newPrice = apiData.price;
-
+  
+      // Extract today's and yesterday's prices
+      const todayPrice = parseFloat(apiData.data[0]?.value); // Latest price
+      const yesterdayPrice = parseFloat(apiData.data[1]?.value); // Previous price
+  
+      if (isNaN(todayPrice) || isNaN(yesterdayPrice)) {
+        throw new Error("Invalid price data from API");
+      }
+  
+      // Update JSONBin with today's and yesterday's prices
       await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
         method: "PUT",
         headers: {
@@ -91,21 +97,25 @@ const useBrentPrice = () => {
         },
         body: JSON.stringify({
           record: [
-            { price: newPrice, updatedAt: new Date().toISOString() },
-            { price: price, updatedAt: new Date().toISOString() },
+            { price: todayPrice, updatedAt: new Date().toISOString() },
+            { price: yesterdayPrice, updatedAt: new Date().toISOString() },
           ],
         }),
       });
-
-      console.log("Updated JSONBin with fresh data");
-      setPrice(newPrice);
-      setPrevPrice(price);
-      comparePrices(newPrice, price);
+  
+      console.log("Updated JSONBin with today's and yesterday's prices");
+  
+      // Update local state
+      setPrice(todayPrice);
+      setPrevPrice(yesterdayPrice);
+      comparePrices(todayPrice, yesterdayPrice);
     } catch (error) {
       console.error("Failed to fetch or update price:", error);
       setPrice("N/A");
+      setPrevPrice("N/A");
     }
   };
+  
 
   const comparePrices = (current, previous) => {
     if (previous !== undefined) {
