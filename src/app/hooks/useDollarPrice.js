@@ -49,12 +49,12 @@ const useDollarPrice = () => {
           console.log("Using cached exchange rates history:", ratesHistory);
           return ratesHistory;
         }
+      } else {
+        console.log("Cached data expired or missing. Fetching fresh data...");
+        // Step 3: Fetch new data from API and update JSONBin
+        const freshRates = await fetchAndUpdateRates(ratesHistory);
+        return freshRates;
       }
-
-      console.log("Cached data expired or missing. Fetching fresh data...");
-      // Step 3: Fetch new data from API and update JSONBin
-      const freshRates = await fetchAndUpdateRates(ratesHistory);
-      return freshRates;
     } catch (error) {
       console.error("Error fetching exchange rates:", error);
       return null;
@@ -74,7 +74,7 @@ const useDollarPrice = () => {
       // Create new entry
       const newEntry = {
         rates: apiData.rates,
-        updatedAt: new Date().toISOString()
+        updatedAt: new Date().toISOString(),
       };
 
       // Combine new entry with existing history, limiting to last 7 entries
@@ -90,7 +90,10 @@ const useDollarPrice = () => {
         body: JSON.stringify(updatedHistory),
       });
 
-      console.log("Updated JSONBin with fresh exchange rates history:", updatedHistory);
+      console.log(
+        "Updated JSONBin with fresh exchange rates history:",
+        updatedHistory
+      );
       return updatedHistory;
     } catch (error) {
       console.error("Failed to fetch or update rates:", error);
@@ -123,12 +126,12 @@ const useDollarPrice = () => {
     fetchData();
   }, [fetchExchangeRates]);
 
-  return { 
+  return {
     price, // This will now be INR value
     prevPrice, // This will now be previous INR value
-    priceChange, 
+    priceChange,
     isLoading,
-    priceHistory // Contains full history with INR rates
+    priceHistory, // Contains full history with INR rates
   };
 };
 

@@ -1,5 +1,6 @@
 "use client";
-import React, { useState } from "react";
+
+import React, { useEffect, useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
 import BrentPrice from "./BrentPrice";
 import ScrollProgressBar from "./ScrollProgressBar";
@@ -9,6 +10,14 @@ import { AnimatePresence, motion } from "framer-motion";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [showBrent, setShowBrent] = useState(true);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setShowBrent((prev) => !prev);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
 
   const NavLinks = ({ mobile = false }) => {
     const linkClass = mobile
@@ -24,13 +33,13 @@ const Navbar = () => {
         >
           About Us
         </a>
-        <a
-          href="#services"
+        <Link
+          href="/Blog"
           className={linkClass}
           onClick={() => mobile && setIsOpen(false)}
         >
-          Services
-        </a>
+          Blog
+        </Link>
         <a
           href="#contact"
           className={linkClass}
@@ -38,29 +47,37 @@ const Navbar = () => {
         >
           Contact
         </a>
-        <div className="brent-price-container">
-          <AnimatePresence>
-            {/* First Element (Brent Price) */}
-            <motion.div
-              key="brent"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <BrentPrice />
-            </motion.div>
-
-            {/* Second Element (Dollar Price) */}
-            <motion.div
-              key="dollar"
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-            >
-              <DollarPrice />
-            </motion.div>
+        <div className="relative h-16 w-32 overflow-hidden">
+          <AnimatePresence mode="wait">
+            {showBrent ? (
+              <motion.div
+                key="brent"
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -20, opacity: 0 }}
+                transition={{
+                  y: { type: "tween", duration: 0.3 },
+                  opacity: { duration: 0.2 },
+                }}
+                className="absolute inset-0 flex items-center justify-center"
+              >
+                <BrentPrice />
+              </motion.div>
+            ) : (
+              <motion.div
+                key="dollar"
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -20, opacity: 0 }}
+                transition={{
+                  y: { type: "tween", duration: 0.3 },
+                  opacity: { duration: 0.2 },
+                }}
+                className="absolute inset-0 flex items-center justify-center"
+              >
+                <DollarPrice />
+              </motion.div>
+            )}
           </AnimatePresence>
         </div>
       </>
@@ -102,24 +119,31 @@ const Navbar = () => {
       <ScrollProgressBar />
 
       {/* Mobile Menu */}
-      {isOpen && (
-        <div className="fixed inset-0 bg-gray-900 bg-opacity-95 z-50 md:hidden animate-fade-in">
-          <div className="relative h-full">
-            {/* Close button */}
-            <button
-              onClick={() => setIsOpen(false)}
-              className="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors"
-            >
-              <FiX size={32} />
-            </button>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="fixed inset-0 bg-gray-900 bg-opacity-95 z-50 md:hidden animate-fade-in"
+          >
+            <div className="relative h-full">
+              {/* Close button */}
+              <button
+                onClick={() => setIsOpen(false)}
+                className="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors"
+              >
+                <FiX size={32} />
+              </button>
 
-            {/* Navigation links */}
-            <div className="flex flex-col items-center justify-center h-full space-y-8">
-              <NavLinks mobile={true} />
+              {/* Navigation links */}
+              <div className="flex flex-col items-center justify-center h-full space-y-8">
+                <NavLinks mobile />
+              </div>
             </div>
-          </div>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

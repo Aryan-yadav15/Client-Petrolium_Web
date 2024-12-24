@@ -1,14 +1,14 @@
-import React from "react"
-import { products } from "@/app/lib/products"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Button } from "@/components/ui/button"
-import { Heart, Share2, ShoppingCart } from "lucide-react"
+import React from "react";
+import { products } from "@/app/lib/products";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Button } from "@/components/ui/button";
+import { Heart, Share2, ShoppingCart } from "lucide-react";
 
 const ProductPage = ({ params }) => {
-  const { id } = params
-  const product = products.find((p) => p.id === parseInt(id))
+  const { id } = params;
+  const product = products.find((p) => p.id === parseInt(id));
 
   if (!product) {
     return (
@@ -19,7 +19,7 @@ const ProductPage = ({ params }) => {
           </CardContent>
         </Card>
       </div>
-    )
+    );
   }
 
   return (
@@ -56,23 +56,11 @@ const ProductPage = ({ params }) => {
           </div>
 
           <div className="flex gap-4">
-            <Button className="flex-1 hover:bg-gray-800 hover:text-white" size="lg">
-              <ShoppingCart className="mr-2 h-5 w-5" />
-              Add to Cart
-            </Button>
             <Button
-              variant="outline"
+              className="flex-1 hover:bg-gray-800 hover:text-white"
               size="lg"
-              className="hover:bg-gray-100 hover:text-gray-800"
             >
-              <Heart className="h-5 w-5" />
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              className="hover:bg-gray-100 hover:text-gray-800"
-            >
-              <Share2 className="h-5 w-5" />
+              Share this Product <Share2 className="h-5 w-5" />
             </Button>
           </div>
         </div>
@@ -114,7 +102,10 @@ const ProductPage = ({ params }) => {
                   {Object.entries(
                     product.detailedDescription.technicalSpecifications
                   ).map(([key, value]) => (
-                    <div key={key} className="flex justify-between border-b py-2">
+                    <div
+                      key={key}
+                      className="flex justify-between border-b py-2"
+                    >
                       <span className="font-medium text-gray-600">{key}</span>
                       <span className="text-gray-800">{value}</span>
                     </div>
@@ -139,13 +130,13 @@ const ProductPage = ({ params }) => {
         </Tabs>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export async function generateStaticParams() {
   return products.map((product) => ({
     id: product.id.toString(),
-  }))
+  }));
 }
 
-export default ProductPage
+export default ProductPage;
