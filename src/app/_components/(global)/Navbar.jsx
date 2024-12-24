@@ -21,8 +21,8 @@ const Navbar = () => {
 
   const NavLinks = ({ mobile = false }) => {
     const linkClass = mobile
-      ? "text-2xl text-white font-semibold hover:text-gray-300 hover:scale-105 transition-all active:text-gray-500"
-      : "hover:text-white hover:scale-110 transition-all cursor-pointer";
+      ? "text-2xl text-gray-800 font-semibold hover:text-gray-400 hover:scale-105 transition-all active:text-gray-500"
+      : "text-gray-800  shadow-2xl drop-shadow-xl font-medium hover:text-white hover:scale-110 transition-all cursor-pointer";
 
     return (
       <>
@@ -47,7 +47,7 @@ const Navbar = () => {
         >
           Contact
         </a>
-        <div className="relative h-16 w-32 overflow-hidden">
+        <div className="relative h-6 w-32 overflow-hidden">
           <AnimatePresence mode="wait">
             {showBrent ? (
               <motion.div
@@ -87,15 +87,15 @@ const Navbar = () => {
   return (
     <div className="relative z-50">
       {/* Fixed Navigation Bar */}
-      <div className="fixed top-0 w-full h-16 bg-gray-800 bg-opacity-60 backdrop-blur-md px-4 lg:px-20 py-2">
+      <div className="fixed top-0 w-full h-16 bg-gray-400 bg-opacity-60 backdrop-blur-md px-4 lg:px-20 pt-2">
         <div className="flex flex-row justify-between items-center">
           {/* Logo Section */}
           <section>
             <Link href="/">
               <img
-                src="/logoipsum-311.svg"
+                src="/logo3.svg"
                 alt="Logo"
-                className="w-auto h-8 pt-2"
+                className="w-auto h-10 drop-shadow-lg cursor-pointer"
               />
             </Link>
           </section>
@@ -131,13 +131,13 @@ const Navbar = () => {
               {/* Close button */}
               <button
                 onClick={() => setIsOpen(false)}
-                className="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors"
+                className="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors "
               >
                 <FiX size={32} />
               </button>
 
               {/* Navigation links */}
-              <div className="flex flex-col items-center justify-center h-full space-y-8">
+              <div className="flex flex-col items-center justify-center h-full ">
                 <NavLinks mobile />
               </div>
             </div>
