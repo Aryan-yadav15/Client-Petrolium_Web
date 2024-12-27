@@ -4,18 +4,16 @@ import {
   Calendar,
   Clock,
   Share2,
-  BookmarkPlus,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
 import { blogs } from "@/app/lib/blog";
 import Image from "next/image";
 import Link from "next/link";
 
-const BlogPost = ({ params }) => {
-  const { id } = params;
+const BlogPost = async({ params }) => {
+  const { id } = await params;
   const blog = blogs.find((blog) => blog.id === parseInt(id));
 
   if (!blog) {

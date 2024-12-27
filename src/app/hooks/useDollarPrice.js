@@ -28,38 +28,47 @@ const useDollarPrice = () => {
   // Function to fetch exchange rates
   const fetchExchangeRates = useCallback(async () => {
     try {
-      // Step 1: Check JSONBin for cached data
+      console.log("Fetching cached data from JSONBin...");
       const jsonBinResponse = await fetch(
         `https://api.jsonbin.io/v3/b/${BIN_ID}/latest`,
         {
           headers: { "X-Master-Key": API_KEY },
         }
       );
+  
+      console.log("JSONBin response status:", jsonBinResponse.status);
+  
+      if (!jsonBinResponse.ok) {
+        throw new Error("Failed to fetch from JSONBin. Status: " + jsonBinResponse.status);
+      }
+  
       const jsonBinData = await jsonBinResponse.json();
+      console.log("Fetched cached data from JSONBin:", jsonBinData);
+  
       const ratesHistory = jsonBinData?.record || [];
-
+      console.log("Rates history:", ratesHistory);
+  
       if (Array.isArray(ratesHistory) && ratesHistory.length > 0) {
         const latestEntry = ratesHistory[0];
         const oneDay = 24 * 60 * 60 * 1000;
         const lastUpdated = new Date(latestEntry.updatedAt).getTime();
         const currentTime = new Date().getTime();
-
+  
         if (currentTime - lastUpdated < oneDay) {
-          // Use cached data if it's less than a day old
-          console.log("Using cached exchange rates history:", ratesHistory);
+          console.log("Using cached data (less than one day old):", ratesHistory);
           return ratesHistory;
         }
-      } else {
-        console.log("Cached data expired or missing. Fetching fresh data...");
-        // Step 3: Fetch new data from API and update JSONBin
-        const freshRates = await fetchAndUpdateRates(ratesHistory);
-        return freshRates;
       }
+  
+      console.log("Cached data is expired or missing. Fetching fresh data...");
+      const freshRates = await fetchAndUpdateRates(ratesHistory);
+      return freshRates;
     } catch (error) {
-      console.error("Error fetching exchange rates:", error);
+      console.error("Error in fetchExchangeRates:", error);
       return null;
     }
   }, []);
+  
 
   const fetchAndUpdateRates = async (existingHistory = []) => {
     try {

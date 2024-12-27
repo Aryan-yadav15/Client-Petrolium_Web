@@ -52,7 +52,6 @@ const ProductPage = ({ params }) => {
             <span className="text-2xl font-bold text-gray-800">
               {product.detailedDescription.priceRange}
             </span>
-            <Badge variant="secondary">Free Shipping</Badge>
           </div>
 
           <div className="flex gap-4">

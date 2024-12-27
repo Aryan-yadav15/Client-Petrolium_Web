@@ -1,21 +1,8 @@
-"use client"
-import useDollarPrice from '@/app/hooks/useDollarPrice'
 import React from 'react'
-import DollarPriceDisplay from './DollarPriceDisplay'
-
+//this is nopt in use
 const DollarPrice = () => {
-  const { price, priceChange, isLoading } = useDollarPrice()
-
   return (
-    <div>
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : price !== 'N/A' ? (
-        <DollarPriceDisplay price={price} priceChange={priceChange} />
-      ) : (
-        <p>Failed to fetch dollar price. Please try again later.</p>
-      )}
-    </div>
+    <div>dasdsaasdasd</div>
   )
 }
 

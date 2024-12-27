@@ -5,34 +5,42 @@ import { FiMenu, FiX } from "react-icons/fi";
 import BrentPrice from "./BrentPrice";
 import ScrollProgressBar from "./ScrollProgressBar";
 import Link from "next/link";
-import DollarPrice from "./DollarPrice";
 import { AnimatePresence, motion } from "framer-motion";
+import useDollarPrice from "@/app/hooks/useDollarPrice";
+import useBrentPrice from "./useBrentPrice";
+import AnimatedPriceDisplay from "./(trial)/AnimatedPrice";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showBrent, setShowBrent] = useState(true);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setShowBrent((prev) => !prev);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
+  const {
+    price: dollarPrice,
+    priceChange: dollarChange,
+    isLoading: dollarLoading,
+  } = useDollarPrice();
+  const {
+    price: brentPrice,
+    priceChange: brentChange,
+    isLoading: brentLoading,
+  } = useBrentPrice();
+
+ 
 
   const NavLinks = ({ mobile = false }) => {
     const linkClass = mobile
-      ? "text-2xl text-gray-800 font-semibold hover:text-gray-400 hover:scale-105 transition-all active:text-gray-500"
-      : "text-gray-800  shadow-2xl drop-shadow-xl font-medium hover:text-white hover:scale-110 transition-all cursor-pointer";
+      ? "text-2xl text-gray-100 pt-10 font-semibold hover:text-gray-400 hover:scale-105 transition-all active:text-gray-500"
+      : "text-gray-800  shadow-2xl drop-shadow-xl font-medium hover:text-white hover:scale-110 transition-all cursor-pointer pt-1";
 
     return (
       <>
-        <a
-          href="#about"
+       <Link
+          href="/Blog"
           className={linkClass}
           onClick={() => mobile && setIsOpen(false)}
         >
-          About Us
-        </a>
+          Blog
+        </Link>
         <Link
           href="/Blog"
           className={linkClass}
@@ -40,45 +48,22 @@ const Navbar = () => {
         >
           Blog
         </Link>
-        <a
-          href="#contact"
+        <Link
+          href="/Blog"
           className={linkClass}
           onClick={() => mobile && setIsOpen(false)}
         >
-          Contact
-        </a>
-        <div className="relative h-6 w-32 overflow-hidden">
-          <AnimatePresence mode="wait">
-            {showBrent ? (
-              <motion.div
-                key="brent"
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -20, opacity: 0 }}
-                transition={{
-                  y: { type: "tween", duration: 0.3 },
-                  opacity: { duration: 0.2 },
-                }}
-                className="absolute inset-0 flex items-center justify-center"
-              >
-                <BrentPrice />
-              </motion.div>
-            ) : (
-              <motion.div
-                key="dollar"
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -20, opacity: 0 }}
-                transition={{
-                  y: { type: "tween", duration: 0.3 },
-                  opacity: { duration: 0.2 },
-                }}
-                className="absolute inset-0 flex items-center justify-center"
-              >
-                <DollarPrice />
-              </motion.div>
-            )}
-          </AnimatePresence>
+          Blog
+        </Link>
+        <div className="relative h-10 w-32 overflow-hidden">
+          <AnimatedPriceDisplay
+            dollarPrice={dollarPrice}
+            dollarChange={dollarChange}
+            dollarLoading={dollarLoading}
+            brentPrice={brentPrice}
+            brentChange={brentChange}
+            brentLoading={brentLoading}
+          />
         </div>
       </>
     );
