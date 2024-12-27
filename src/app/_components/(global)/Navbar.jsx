@@ -72,7 +72,7 @@ const Navbar = () => {
   return (
     <div className="relative z-50">
       {/* Fixed Navigation Bar */}
-      <div className="fixed top-0 w-full h-16 bg-gray-400 bg-opacity-60 backdrop-blur-md px-4 lg:px-20 pt-2">
+      <div className="fixed top-0 w-full h-16 bg-gray-50 bg-opacity-60 backdrop-blur-md px-4 lg:px-20 pt-2">
         <div className="flex flex-row justify-between items-center">
           {/* Logo Section */}
           <section>
@@ -80,7 +80,7 @@ const Navbar = () => {
               <img
                 src="/logo3.svg"
                 alt="Logo"
-                className="w-auto h-10 drop-shadow-lg cursor-pointer"
+                className="w-auto h-10 drop-shadow-lg cursor-pointer pb-1"
               />
             </Link>
           </section>
