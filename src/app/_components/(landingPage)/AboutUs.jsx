@@ -1,22 +1,7 @@
-"use client"
 import React from "react";
-import BrentPrice from "./BrentPrice";
-import AnimatedPriceDisplay from "../(global)/(trial)/AnimatedPrice";
-import useDollarPrice from "@/app/hooks/useDollarPrice";
-import useBrentPrice from "../(global)/useBrentPrice";
 
 const AboutUs = () => {
 
-  const {
-    price: dollarPrice,
-    priceChange: dollarChange,
-    isLoading: dollarLoading,
-  } = useDollarPrice();
-  const {
-    price: brentPrice,
-    priceChange: brentChange,
-    isLoading: brentLoading,
-  } = useBrentPrice();
   return (
     <div className="w-full pt-20 pb-4">
       <div className="flex flex-col lg:flex-row bg-white  rounded-xl border-gray-200">
@@ -26,14 +11,7 @@ const AboutUs = () => {
               <span className="inline-block px-4 py-2 bg-sky-100 text-sky-800 font-semibold rounded-full">
                 About Us
               </span>
-              <AnimatedPriceDisplay
-            dollarPrice={dollarPrice}
-            dollarChange={dollarChange}
-            dollarLoading={dollarLoading}
-            brentPrice={brentPrice}
-            brentChange={brentChange}
-            brentLoading={brentLoading}
-          />              <h1 className="text-4xl lg:text-5xl font-bold text-sky-900 leading-tight">
+               <h1 className="text-4xl lg:text-5xl font-bold text-sky-900 leading-tight">
                 Delivering High-Quality Petroleum Products with{" "}
                 <span className="text-sky-600">Integrity and Innovation</span>
               </h1>
