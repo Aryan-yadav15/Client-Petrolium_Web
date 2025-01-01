@@ -11,25 +11,25 @@ const Footer = () => {
           <div className="flex-1">
             <div className="flex items-center mb-4">
               <Image
-                src="/logoipsum-311.svg"
-                width={150}
+                src="/logo3.svg"
+                width={250}
                 height={150}
                 alt="Logo"
               />
             </div>
             <h2 className="text-lg sm:text-xl font-bold mb-2">
-              We are the future of oil & lubricants industry.
+              Leading the Future of Petroleum Solutions
             </h2>
-            <p className="text-sm">Vishveshwar oil, 2025.</p>
+            <p className="text-sm">Vishveshwar Oil & Lubricants, 2025.</p>
           </div>
 
           {/* Section 2: Platform */}
           <div className="flex-1">
-            <h3 className="text-lg font-semibold mb-3">Platform</h3>
+            <h3 className="text-lg font-semibold mb-3">Our Services</h3>
             <ul className="space-y-2 text-sm">
-              <li>Plans & Pricing</li>
-              <li>Personal AI Manager</li>
-              <li>AI Business Writer</li>
+              <li>Custom Solutions</li>
+              <li>Global Sourcing</li>
+              <li>24/7 Support</li>
             </ul>
           </div>
 
@@ -37,9 +37,15 @@ const Footer = () => {
           <div className="flex-1">
             <h3 className="text-lg font-semibold mb-3">Company</h3>
             <ul className="space-y-2 text-sm">
-              <li>Blog</li>
-              <li>Careers</li>
-              <li>News</li>
+              <li>
+                <a href="#about">About Us</a>
+              </li>
+              <li>
+                <a href="#products">Products</a>
+              </li>
+              <li>
+                <a href="#contact">Contact</a>
+              </li>
             </ul>
           </div>
         </div>
@@ -48,18 +54,21 @@ const Footer = () => {
         <div className="bg-neonBlue text-gray-900 text-center py-3 text-xs sm:text-sm">
           <p>
             &copy; 2025 Vishveshwar Oil & Lubricants Pvt Ltd
-            <span className="mx-2">|</span>
-            <a href="#" className="hover:underline">
-              Terms of Service
-            </a>
-            <span className="mx-2">|</span>
-            <a href="#" className="hover:underline">
-              Privacy Policy
-            </a>
-            <span className="mx-2">|</span>
-            <a href="#" className="hover:underline">
-              Cookies
-            </a>
+            {/**
+           * <span className="mx-2">|</span>
+          <a href="#" className="hover:underline">
+            Terms of Service
+          </a>
+          <span className="mx-2">|</span>
+          <a href="#" className="hover:underline">
+            Privacy Policy
+          </a>
+          <span className="mx-2">|</span>
+          <a href="#" className="hover:underline">
+            Cookies
+          </a>
+           * 
+           */}
           </p>
         </div>
       </footer>

@@ -10,6 +10,8 @@ body {
   /* Prevent horizontal page scrolling */
 html, body {
   overflow-x: hidden;
+  scroll-behavior: smooth;
+
 }
 
 /* Ensure only the container scrolls */

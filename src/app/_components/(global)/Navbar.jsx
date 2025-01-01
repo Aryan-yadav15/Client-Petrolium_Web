@@ -35,11 +35,11 @@ const Navbar = () => {
     return (
       <>
        <Link
-          href="/Blog"
+          href="#products"
           className={linkClass}
           onClick={() => mobile && setIsOpen(false)}
         >
-          Blog
+          Products
         </Link>
         <Link
           href="/Blog"
@@ -49,11 +49,11 @@ const Navbar = () => {
           Blog
         </Link>
         <Link
-          href="/Blog"
+          href="#contact"
           className={linkClass}
           onClick={() => mobile && setIsOpen(false)}
         >
-          Blog
+          Contact
         </Link>
         <div className="relative h-10 w-32 overflow-hidden">
           <AnimatedPriceDisplay

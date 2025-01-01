@@ -3,6 +3,7 @@ import React from "react";
 const OurValues = () => {
   return (
     <section
+      id="contact"
       className="relative bg-cover bg-center h-[400px] sm:h-[500px] flex items-center justify-center rounded-2xl overflow-hidden"
       style={{
         backgroundImage: "url('/image/values.jpg')",
@@ -28,7 +29,9 @@ const OurValues = () => {
 
         {/* CTA Button */}
         <a
-          href="/contact"
+          href="https://mail.google.com/mail/?view=cm&fs=1&to=your-email@example.com"
+          target="_blank"
+          rel="noopener noreferrer"
           className="bg-neonBlue hover:bg-sky-400 text-gray-800 py-2 px-4 sm:py-3 sm:px-6 rounded-md text-sm sm:text-lg font-medium transition duration-300"
         >
           Contact Us Today
