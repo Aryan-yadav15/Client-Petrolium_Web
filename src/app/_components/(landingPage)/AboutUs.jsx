@@ -29,7 +29,9 @@ const AboutUs = () => {
               <div className="grid grid-cols-2 gap-6">
                 {stats.map((stat) => (
                   <div key={stat.label} className="p-4 bg-sky-50 rounded-lg">
-                    <div className="font-bold text-2xl text-sky-700">{stat.value}</div>
+                    <div className="font-bold text-2xl text-sky-700">
+                      {stat.value}
+                    </div>
                     <div className="text-sky-600 text-sm">{stat.label}</div>
                   </div>
                 ))}
@@ -39,38 +41,66 @@ const AboutUs = () => {
             <div className="space-y-6">
               <div className="prose prose-lg text-gray-600">
                 <p>
-                  Since our establishment in 2005, we have been a trusted name in the
-                  petroleum industry. Specializing in manufacturing, importing, and
-                  reselling a diverse range of petroleum products, we pride ourselves
-                  on delivering top-notch solutions to meet our customers' needs.
+                  Since our establishment in 2005, we have been a trusted name
+                  in the petroleum industry. Specializing in manufacturing,
+                  importing, and reselling a diverse range of petroleum
+                  products, we pride ourselves on delivering top-notch solutions
+                  to meet our customers' needs.
                 </p>
 
                 <p>
                   Our founder, with extensive business experience across various
-                  industries, personally oversaw the establishment of this plant,
-                  ensuring that every aspect met his vision and standards.
+                  industries, personally oversaw the establishment of this
+                  plant, ensuring that every aspect met his vision and
+                  standards.
                 </p>
 
                 <p>
-                  We proudly collaborate with major oil enterprises, including both
-                  public sector undertakings (PSUs) and private firms such as:
+                  We proudly collaborate with major oil enterprises, including
+                  both public sector undertakings (PSUs) and private firms such
+                  as:
                 </p>
 
                 <div className="grid grid-cols-2 gap-4 mt-4">
-                  {["ONGC", "Hindustan Petroleum", "Bharat Petroleum", "Indian Oil Corporation", 
-                    "Vedanta", "Reliance Industries", "GAIL"].map((partner) => (
-                    <div key={partner} className="flex items-center space-x-2 text-sky-700">
+                  {[
+                    { name: "ONGC", url: "https://www.ongcindia.com" },
+                    {
+                      name: "Hindustan Petroleum",
+                      url: "https://www.hindustanpetroleum.com",
+                    },
+                    {
+                      name: "Bharat Petroleum",
+                      url: "https://www.bharatpetroleum.com",
+                    },
+                    {
+                      name: "Indian Oil Corporation",
+                      url: "https://www.iocl.com",
+                    },
+                    {
+                      name: "Vedanta",
+                      url: "https://www.vedantaresources.com",
+                    },
+                    { name: "Reliance Industries", url: "https://www.ril.com" },
+                    { name: "GAIL", url: "https://www.gailonline.com" },
+                  ].map((partner) => (
+                    <a
+                      key={partner.name}
+                      href={partner.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center space-x-2 text-sky-700 hover:underline"
+                    >
                       <ArrowUpRight className="h-4 w-4" />
-                      <span>{partner}</span>
-                    </div>
+                      <span>{partner.name}</span>
+                    </a>
                   ))}
                 </div>
 
                 <p className="mt-6">
                   Vishveshwar Oil and Lubricant Private Limited serves various
                   industries including paints, road construction, mining,
-                  pharmaceuticals, cosmetics, and chemicals with our comprehensive
-                  range of petroleum products.
+                  pharmaceuticals, cosmetics, and chemicals with our
+                  comprehensive range of petroleum products.
                 </p>
               </div>
             </div>
