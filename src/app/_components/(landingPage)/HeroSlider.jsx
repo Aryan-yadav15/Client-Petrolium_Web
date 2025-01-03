@@ -87,8 +87,8 @@ const ImageSlider = () => {
   };
 
   return (
-    <div className="relative w-full h-screen bg-black">
-      <div className="relative w-full h-full">
+    <div className="relative w-full min-h-screen bg-black flex flex-col">
+      <div className="relative flex-1 w-full">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentIndex}
@@ -107,7 +107,7 @@ const ImageSlider = () => {
             <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/70" />
             <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent" />
 
-            <div className="absolute inset-x-0 bottom-32 flex justify-center items-center px-4 sm:px-6 lg:px-8">
+            <div className="absolute inset-x-0 bottom-0 mb-20 sm:mb-32 flex justify-center items-center px-4 sm:px-6 lg:px-8">
               <motion.div
                 className="w-full max-w-4xl bg-black/40 backdrop-blur-sm rounded-3xl p-6 sm:p-8 lg:p-10"
                 initial={{ y: 50, opacity: 0 }}
@@ -211,8 +211,8 @@ const ImageSlider = () => {
         </AnimatePresence>
       </div>
 
-      <div className="absolute bottom-4 left-0 right-0 flex justify-center px-4 z-40">
-        <div className="w-full max-w-[30rem] bg-black/50 rounded-3xl py-4 px-4">
+      <div className="relative w-full py-4 bg-black/50 mt-auto">
+        <div className="w-full max-w-[30rem] mx-auto px-4">
           <div className="flex flex-row justify-evenly space-x-2 sm:space-x-4">
             {slides.map((_, index) => (
               <div key={index} className="flex-1 min-w-0 max-w-full">
@@ -235,45 +235,47 @@ const ImageSlider = () => {
         </div>
       </div>
 
-      <div className="absolute inset-y-0 left-0 right-0 flex items-center justify-between px-4 sm:px-6 lg:px-8">
-        <button
-          onClick={prevSlide}
-          className="p-2 rounded-full bg-black/30 hover:bg-black/50 transition-colors text-white backdrop-blur-sm"
-          aria-label="Previous slide"
-        >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+      <div className="absolute inset-y-0 left-0 right-0 pointer-events-none">
+        <div className="h-full flex items-center justify-between px-4 sm:px-6 lg:px-8">
+          <button
+            onClick={prevSlide}
+            className="pointer-events-auto p-2 rounded-full bg-black/30 hover:bg-black/50 transition-colors text-white backdrop-blur-sm"
+            aria-label="Previous slide"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15 19l-7-7 7-7"
-            />
-          </svg>
-        </button>
-        <button
-          onClick={nextSlide}
-          className="p-2 rounded-full bg-black/30 hover:bg-black/50 transition-colors text-white backdrop-blur-sm"
-          aria-label="Next slide"
-        >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+          </button>
+          <button
+            onClick={nextSlide}
+            className="pointer-events-auto p-2 rounded-full bg-black/30 hover:bg-black/50 transition-colors text-white backdrop-blur-sm"
+            aria-label="Next slide"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M9 5l7 7-7 7"
-            />
-          </svg>
-        </button>
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
   );
