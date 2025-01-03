@@ -7,47 +7,67 @@ const slides = [
   {
     src: "/image/homeSlider/img1.jpg",
     title: "Excellence in Petroleum",
-    subheading: "Leading the industry with integrity, innovation, and sustainable solutions since 2005.",
+    subheading:
+      "Leading the industry with integrity, innovation, and sustainable solutions since 2005.",
     showLogo: true,
     highlights: [
       {
         icon: Building2,
         title: "18+ Years",
-        desc: "Of Industry Excellence"
+        desc: "Of Industry Excellence",
       },
       {
         icon: Shield,
         title: "Quality Assured",
-        desc: "ISO Certified Products"
+        desc: "ISO Certified Products",
       },
       {
         icon: Truck,
         title: "Pan India",
-        desc: "Distribution Network"
+        desc: "Distribution Network",
       },
       {
         icon: Users,
         title: "1000+",
-        desc: "Satisfied Clients"
-      }
-    ]
+        desc: "Satisfied Clients",
+      },
+    ],
   },
   {
     src: "/image/homeSlider/img2.jpg",
     title: "Our Expertise",
-    subheading: "With 18+ years of experience, we provide comprehensive petroleum solutions backed by cutting-edge technology and industry expertise.",
-    features: ["Quality Assurance", "Sustainable Practices", "24/7 Support", "Nationwide Delivery"],
+    subheading:
+      "With 18+ years of experience, we provide comprehensive petroleum solutions backed by cutting-edge technology and industry expertise.",
+    features: [
+      "Quality Assurance",
+      "Sustainable Practices",
+      "24/7 Support",
+      "Nationwide Delivery",
+    ],
     showLogo: false,
   },
   {
     src: "/image/homeSlider/img3.jpg",
     title: "Premium Products",
-    subheading: "Comprehensive range of high-quality petroleum products for diverse industrial needs:",
+    subheading:
+      "Comprehensive range of high-quality petroleum products for diverse industrial needs:",
     products: [
-      { name: "LDO (Light Diesel Oil)", desc: "High-efficiency fuel for industrial applications" },
-      { name: "Furnace Oil", desc: "Premium heating solution for industrial boilers" },
-      { name: "MTO (Motor Turbine Oil)", desc: "Advanced lubricant for turbine engines" },
-      { name: "C9 Solvent", desc: "Versatile aromatic solvent for multiple applications" }
+      {
+        name: "LDO (Light Diesel Oil)",
+        desc: "High-efficiency fuel for industrial applications",
+      },
+      {
+        name: "Furnace Oil",
+        desc: "Premium heating solution for industrial boilers",
+      },
+      {
+        name: "MTO (Motor Turbine Oil)",
+        desc: "Advanced lubricant for turbine engines",
+      },
+      {
+        name: "C9 Solvent",
+        desc: "Versatile aromatic solvent for multiple applications",
+      },
     ],
     showLogo: false,
   },
@@ -83,12 +103,15 @@ const ImageSlider = () => {
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prevIndex) => prevIndex === 0 ? slides.length - 1 : prevIndex - 1);
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? slides.length - 1 : prevIndex - 1
+    );
   };
 
   return (
-    <div className="relative w-full min-h-screen bg-black flex flex-col">
-      <div className="relative flex-1 w-full">
+    <div className="relative w-full h-[100dvh] bg-black overflow-hidden flex flex-col">
+      {/* Main content area */}
+      <div className="relative flex-1 w-full overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentIndex}
@@ -98,121 +121,152 @@ const ImageSlider = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.7 }}
           >
+            {/* Background image */}
             <img
               src={slides[currentIndex].src}
               alt={slides[currentIndex].title}
               className="w-full h-full object-cover"
             />
 
+            {/* Gradients */}
             <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/70" />
             <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent" />
 
-            <div className="absolute inset-x-0 bottom-0 mb-20 sm:mb-32 flex justify-center items-center px-4 sm:px-6 lg:px-8">
-              <motion.div
-                className="w-full max-w-4xl bg-black/40 backdrop-blur-sm rounded-3xl p-6 sm:p-8 lg:p-10"
-                initial={{ y: 50, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.2, duration: 0.5 }}
-              >
-                {slides[currentIndex].showLogo && (
-                  <div className="mb-8 flex justify-center">
+            {/* Content Container */}
+            <div className="absolute inset-0 flex flex-col justify-end pb-24 sm:pb-32">
+              <div className="px-4 sm:px-6 lg:px-8">
+                <motion.div
+                  className="w-full max-w-4xl mx-auto bg-black/40 backdrop-blur-sm rounded-3xl p-4 sm:p-6 lg:p-8"
+                  initial={{ y: 50, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.2, duration: 0.5 }}
+                >
+                  {/* Logo Section */}
+                  {slides[currentIndex].showLogo && (
+                    <div className="mb-6 flex justify-center">
+                      <motion.div
+                        className="relative"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ delay: 0.5, duration: 0.5 }}
+                      >
+                       <p className="text-gray-900 z-40 bg-white/60 rounded-xl py-4 px-2 font-bold text-lg text-center lg:text-3xl">Vishveshwar Oils & Lubricants Pvt. Ltd.</p>
+                      </motion.div>
+                    </div>
+                  )}
+
+                  {/* Title and Subheading */}
+                  <motion.h2
+                    className="text-2xl sm:text-3xl lg:text-4xl text-white font-bold mb-3 text-center"
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.3, duration: 0.5 }}
+                  >
+                    {slides[currentIndex].title}
+                  </motion.h2>
+                  <motion.p
+                    className="text-sm sm:text-base text-gray-200 mb-6 max-w-3xl text-center mx-auto"
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.4, duration: 0.5 }}
+                  >
+                    {slides[currentIndex].subheading}
+                  </motion.p>
+
+                  {/* Highlights Grid */}
+                  {slides[currentIndex].highlights && (
                     <motion.div
-                      className="relative"
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
+                      className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4"
+                      initial={{ y: 20, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
                       transition={{ delay: 0.5, duration: 0.5 }}
                     >
-                      <div className="absolute inset-0 bg-white/60 rounded-lg transform scale-110" />
-                      <img
-                        src="/logo3.svg"
-                        alt="Company Logo"
-                        className="relative w-60 h-20 object-contain"
-                      />
+                      {slides[currentIndex].highlights.map((item, index) => (
+                        <motion.div
+                          key={index}
+                          className="bg-white/10 backdrop-blur-sm rounded-lg p-3 sm:p-4 text-center"
+                          initial={{ scale: 0.8, opacity: 0 }}
+                          animate={{ scale: 1, opacity: 1 }}
+                          transition={{
+                            delay: 0.6 + index * 0.1,
+                            duration: 0.3,
+                          }}
+                        >
+                          <item.icon className="w-6 h-6 sm:w-8 sm:h-8 mb-2 sm:mb-3 mx-auto text-blue-400" />
+                          <h3 className="text-base sm:text-lg font-bold text-white mb-1">
+                            {item.title}
+                          </h3>
+                          <p className="text-xs sm:text-sm text-gray-300">
+                            {item.desc}
+                          </p>
+                        </motion.div>
+                      ))}
                     </motion.div>
-                  </div>
-                )}
-                
-                <motion.h2
-                  className="text-3xl sm:text-4xl lg:text-5xl text-white font-bold mb-4 text-center"
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.3, duration: 0.5 }}
-                >
-                  {slides[currentIndex].title}
-                </motion.h2>
-                <motion.p
-                  className="text-sm sm:text-base lg:text-lg text-gray-200 mb-8 max-w-3xl text-center mx-auto"
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.4, duration: 0.5 }}
-                >
-                  {slides[currentIndex].subheading}
-                </motion.p>
+                  )}
 
-                {slides[currentIndex].highlights && (
-                  <motion.div
-                    className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8"
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.5, duration: 0.5 }}
-                  >
-                    {slides[currentIndex].highlights.map((item, index) => (
-                      <motion.div
-                        key={index}
-                        className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center"
-                        initial={{ scale: 0.8, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        transition={{ delay: 0.6 + index * 0.1, duration: 0.3 }}
-                      >
-                        <item.icon className="w-8 h-8 mb-3 mx-auto text-blue-400" />
-                        <h3 className="text-lg font-bold text-white mb-1">{item.title}</h3>
-                        <p className="text-sm text-gray-300">{item.desc}</p>
-                      </motion.div>
-                    ))}
-                  </motion.div>
-                )}
+                  {/* Features Grid */}
+                  {slides[currentIndex].features && (
+                    <motion.div
+                      className="grid grid-cols-2 gap-3 sm:gap-4"
+                      initial={{ y: 20, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      transition={{ delay: 0.5, duration: 0.5 }}
+                    >
+                      {slides[currentIndex].features.map((feature, index) => (
+                        <div
+                          key={index}
+                          className="flex items-center text-white text-sm sm:text-base"
+                        >
+                          <svg
+                            className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-blue-400"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                          {feature}
+                        </div>
+                      ))}
+                    </motion.div>
+                  )}
 
-                {slides[currentIndex].features && (
-                  <motion.div
-                    className="grid grid-cols-2 gap-4 mt-6"
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.5, duration: 0.5 }}
-                  >
-                    {slides[currentIndex].features.map((feature, index) => (
-                      <div key={index} className="flex items-center text-white">
-                        <svg className="w-5 h-5 mr-2 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                        </svg>
-                        {feature}
-                      </div>
-                    ))}
-                  </motion.div>
-                )}
-
-                {slides[currentIndex].products && (
-                  <motion.div
-                    className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6"
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.5, duration: 0.5 }}
-                  >
-                    {slides[currentIndex].products.map((product, index) => (
-                      <div key={index} className="bg-white/10 rounded-lg p-4">
-                        <h3 className="text-lg font-semibold text-white mb-2">{product.name}</h3>
-                        <p className="text-sm text-gray-200">{product.desc}</p>
-                      </div>
-                    ))}
-                  </motion.div>
-                )}
-              </motion.div>
+                  {/* Products Grid */}
+                  {slides[currentIndex].products && (
+                    <motion.div
+                      className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4"
+                      initial={{ y: 20, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      transition={{ delay: 0.5, duration: 0.5 }}
+                    >
+                      {slides[currentIndex].products.map((product, index) => (
+                        <div
+                          key={index}
+                          className="bg-white/10 rounded-lg p-3 sm:p-4"
+                        >
+                          <h3 className="text-base sm:text-lg font-semibold text-white mb-1 sm:mb-2">
+                            {product.name}
+                          </h3>
+                          <p className="text-xs sm:text-sm text-gray-200">
+                            {product.desc}
+                          </p>
+                        </div>
+                      ))}
+                    </motion.div>
+                  )}
+                </motion.div>
+              </div>
             </div>
           </motion.div>
         </AnimatePresence>
       </div>
 
-      <div className="relative w-full py-4 bg-black/50 mt-auto">
-        <div className="w-full max-w-[30rem] mx-auto px-4">
+      {/* Progress bar */}
+      <div className="relative w-full bg-black/50">
+        <div className="w-full max-w-[30rem] mx-auto px-4 py-3">
           <div className="flex flex-row justify-evenly space-x-2 sm:space-x-4">
             {slides.map((_, index) => (
               <div key={index} className="flex-1 min-w-0 max-w-full">
@@ -235,6 +289,7 @@ const ImageSlider = () => {
         </div>
       </div>
 
+      {/* Navigation buttons */}
       <div className="absolute inset-y-0 left-0 right-0 pointer-events-none">
         <div className="h-full flex items-center justify-between px-4 sm:px-6 lg:px-8">
           <button
@@ -243,7 +298,7 @@ const ImageSlider = () => {
             aria-label="Previous slide"
           >
             <svg
-              className="w-6 h-6"
+              className="w-5 h-5 sm:w-6 sm:h-6"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -262,7 +317,7 @@ const ImageSlider = () => {
             aria-label="Next slide"
           >
             <svg
-              className="w-6 h-6"
+              className="w-5 h-5 sm:w-6 sm:h-6"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
