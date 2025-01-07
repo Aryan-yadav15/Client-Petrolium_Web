@@ -11,7 +11,7 @@ const Footer = () => {
           <div className="flex-1">
             <div className="flex items-center mb-4">
               <Image
-                src="/logo3.svg"
+                src="/logo_1.png"
                 width={250}
                 height={150}
                 alt="Logo"
