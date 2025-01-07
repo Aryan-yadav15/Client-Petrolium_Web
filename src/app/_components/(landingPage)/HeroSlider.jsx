@@ -133,7 +133,7 @@ const ImageSlider = () => {
             <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent" />
 
             {/* Content Container */}
-            <div className="absolute inset-0 flex flex-col justify-end pb-24 sm:pb-32">
+            <div className="absolute inset-0 flex flex-col justify-end pb-10">
               <div className="px-4 sm:px-6 lg:px-8">
                 <motion.div
                   className="w-full max-w-4xl mx-auto bg-black/40 backdrop-blur-sm rounded-3xl p-4 sm:p-6 lg:p-8"
@@ -143,14 +143,63 @@ const ImageSlider = () => {
                 >
                   {/* Logo Section */}
                   {slides[currentIndex].showLogo && (
-                    <div className="mb-6 flex justify-center">
+                    <div className="mb-8 flex justify-center overflow-hidden">
                       <motion.div
                         className="relative"
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ delay: 0.5, duration: 0.5 }}
+                        initial={{ scale: 0, opacity: 0, y: 20 }}
+                        animate={{ scale: 1, opacity: 1, y: 0 }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 100,
+                          damping: 15,
+                          delay: 0.3,
+                        }}
                       >
-                       <p className="text-gray-900 z-40 bg-white/60 rounded-xl py-4 px-2 font-bold text-lg text-center lg:text-3xl">Vishveshwar Oils & Lubricants Pvt. Ltd.</p>
+                        <motion.div
+                          className="absolute inset-0 bg-gradient-to-r from-gray-500/20 to-sky-500/ blur-xl"
+                          animate={{
+                            scale: [1, 1.2, 1],
+                            rotate: [0, 5, -5, 0],
+                          }}
+                          transition={{
+                            duration: 5,
+                            repeat: Infinity,
+                            repeatType: "reverse",
+                          }}
+                        />
+
+                        <div className="relative group">
+                          <motion.p
+                            className="text-gray-900 z-40  backdrop-blur-sm rounded-2xl py-6 px-2 lg:px-8 font-extrabold text-xl lg:text-4xl text-center shadow-xl "
+                            whileHover={{
+                              scale: 1.02,
+                              transition: { duration: 0.2 },
+                            }}
+                          >
+                            <motion.span
+                              initial={{ backgroundPosition: "0% 50%" }}
+                              whileHover={{
+                                backgroundPosition: "100% 50%",
+                                transition: { duration: 0.8 },
+                              }}
+                              className=" text-gray-100 bg-clip-text  bg-[length:200%]"
+                            >
+                              Vishveshwar Oils & Lubricants Pvt. Ltd.
+                            </motion.span>
+                          </motion.p>
+
+                          <motion.div
+                            className="absolute -inset-1  text-gray-100 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300"
+                            animate={{
+                              scale: [1, 1.02, 1],
+                            }}
+                            transition={{
+                              duration: 2,
+                              repeat: Infinity,
+                              repeatType: "reverse",
+                            }}
+                          />
+                        </div>
                       </motion.div>
                     </div>
                   )}
