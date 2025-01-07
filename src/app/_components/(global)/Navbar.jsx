@@ -29,8 +29,8 @@ const Navbar = () => {
 
   const NavLinks = ({ mobile = false }) => {
     const linkClass = mobile
-      ? "text-2xl text-gray-100 pt-10 font-semibold hover:text-gray-400 hover:scale-105 transition-all active:text-gray-500"
-      : "text-gray-800  shadow-2xl drop-shadow-xl font-medium hover:text-white hover:scale-110 transition-all cursor-pointer pt-1";
+      ? "text-2xl text-gray-100 pt-10 font-bold hover:text-gray-400 hover:scale-105 transition-all active:text-gray-500"
+      : "text-gray-800  shadow-2xl drop-shadow-xl font-medium hover:text-blue-500 hover:scale-110 transition-all cursor-pointer pt-1";
 
     return (
       <>
@@ -55,7 +55,7 @@ const Navbar = () => {
         >
           Contact
         </Link>
-        <div className="relative h-10 w-32 overflow-hidden">
+        <div className="relative h-8 w-32 overflow-hidden">
           <AnimatedPriceDisplay
             dollarPrice={dollarPrice}
             dollarChange={dollarChange}
@@ -78,9 +78,9 @@ const Navbar = () => {
           <section>
             <Link href="/">
               <img
-                src="/logo3.svg"
+                src="/logo_1.png"
                 alt="Logo"
-                className="w-auto h-10 drop-shadow-lg cursor-pointer pb-1"
+                className="w-auto h-10 drop-shadow-lg cursor-pointer "
               />
             </Link>
           </section>
