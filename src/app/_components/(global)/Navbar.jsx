@@ -35,7 +35,7 @@ const Navbar = () => {
     return (
       <>
        <Link
-          href="#products"
+          href="//#products"
           className={linkClass}
           onClick={() => mobile && setIsOpen(false)}
         >
@@ -49,7 +49,7 @@ const Navbar = () => {
           Blog
         </Link>
         <Link
-          href="#contact"
+          href="/contact"
           className={linkClass}
           onClick={() => mobile && setIsOpen(false)}
         >
