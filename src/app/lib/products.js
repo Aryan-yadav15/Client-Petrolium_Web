@@ -48,7 +48,7 @@ export const products = [
   },
   {
     id: 3,
-    title: "MTO (Motor Turbine Oil)",
+    title: "MTO (Mineral turpentine oil)",
     image:"/image/product/mto.jpg",
     shortDescription:
       "MTO is a premium-quality oil designed to lubricate and protect high-performance turbine engines, ensuring smooth operation and extending equipment life.",
