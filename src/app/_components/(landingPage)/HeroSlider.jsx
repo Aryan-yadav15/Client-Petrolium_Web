@@ -314,7 +314,7 @@ const ImageSlider = () => {
       </div>
 
       {/* Progress bar */}
-      <div className="relative w-full bg-black/50">
+      <div className="relative w-full bg-black/10">
         <div className="w-full max-w-[30rem] mx-auto px-4 py-3">
           <div className="flex flex-row justify-evenly space-x-2 sm:space-x-4">
             {slides.map((_, index) => (
