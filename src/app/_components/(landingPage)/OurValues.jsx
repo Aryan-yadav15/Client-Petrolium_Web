@@ -29,7 +29,7 @@ const OurValues = () => {
 
         {/* CTA Button */}
         <a
-          href="https://mail.google.com/mail/?view=cm&fs=1&to=your-email@example.com"
+          href="/contact"
           target="_blank"
           rel="noopener noreferrer"
           className="bg-neonBlue hover:bg-sky-400 text-gray-800 py-2 px-4 sm:py-3 sm:px-6 rounded-md text-sm sm:text-lg font-medium transition duration-300"

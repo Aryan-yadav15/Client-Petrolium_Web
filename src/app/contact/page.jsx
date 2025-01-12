@@ -73,6 +73,7 @@ const Contact = () => {
                     services. Contact us today to learn how we can help your
                     business thrive.
                   </p>
+
                   <div className="mb-8 flex w-full max-w-[370px]">
                     <div className="mr-6 flex h-[60px] w-full max-w-[60px] items-center justify-center overflow-hidden rounded bg-primary/5 text-primary sm:h-[70px] sm:max-w-[70px]">
                       <svg
@@ -165,6 +166,10 @@ const Contact = () => {
                 </div>
               </div>
               <div className="w-full px-4 lg:w-1/2 xl:w-5/12">
+                <p className="my-6 font-bold text-red-600">
+                  WE DEAL ONLY IN BULK 
+                  MOQ - 20,000 litres
+                </p>
                 <div className="relative rounded-lg bg-white p-8 shadow-lg sm:p-12">
                   <form onSubmit={handleSubmit}>
                     <div className="mb-6">
