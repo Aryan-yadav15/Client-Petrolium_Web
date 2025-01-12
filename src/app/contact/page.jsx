@@ -53,7 +53,7 @@ const Contact = () => {
   };
   return (
     <>
-      <div className="px-20">
+      <div className="px-4 lg:px-20">
         <section className="relative z-10 overflow-hidden  py-20 lg:py-[120px]">
           <div className="container">
             <div className="-mx-4 flex flex-wrap lg:justify-between">

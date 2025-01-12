@@ -1,4 +1,4 @@
- "use client";
+"use client";
 
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -10,11 +10,14 @@ import { Share2 } from "lucide-react";
 const ProductDetails = ({ product }) => {
   const handleShare = () => {
     const url = window.location.href;
-    navigator.clipboard.writeText(url).then(() => {
-      alert("URL copied to clipboard!");
-    }).catch(err => {
-      console.error('Failed to copy: ', err);
-    });
+    navigator.clipboard
+      .writeText(url)
+      .then(() => {
+        alert("URL copied to clipboard!");
+      })
+      .catch((err) => {
+        console.error("Failed to copy: ", err);
+      });
   };
 
   return (
@@ -24,13 +27,14 @@ const ProductDetails = ({ product }) => {
         <div className="flex flex-col items-center">
           <div className="bg-gray-100 rounded-lg p-8 aspect-square flex items-center justify-center">
             <img
-              src="/image/blog-bg.jpg"
-              alt={product.title}
+              src={product.image}
+              alt={product.title || "Product Image"} // Ensure alt text is descriptive
               className="max-w-full h-auto rounded-lg shadow-md"
+              loading="lazy" // Add lazy loading for performance optimization
+              style={{ maxWidth: "500px", maxHeight: "500px" }} // Limit the size
             />
           </div>
         </div>
-
         {/* Product Info Section */}
         <div className="flex flex-col space-y-6 pt-20">
           <div>

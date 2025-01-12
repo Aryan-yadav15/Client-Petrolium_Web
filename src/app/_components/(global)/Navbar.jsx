@@ -12,19 +12,7 @@ import AnimatedPriceDisplay from "./(trial)/AnimatedPrice";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [showBrent, setShowBrent] = useState(true);
-
-  const {
-    price: dollarPrice,
-    priceChange: dollarChange,
-    isLoading: dollarLoading,
-  } = useDollarPrice();
-  const {
-    price: brentPrice,
-    priceChange: brentChange,
-    isLoading: brentLoading,
-  } = useBrentPrice();
-
+ 
  
 
   const NavLinks = ({ mobile = false }) => {
@@ -55,7 +43,7 @@ const Navbar = () => {
         >
           Contact
         </Link>
-        <div className="relative h-8 w-32 overflow-hidden">
+        {/* <div className="relative h-8 w-32 overflow-hidden">
           <AnimatedPriceDisplay
             dollarPrice={dollarPrice}
             dollarChange={dollarChange}
@@ -64,7 +52,7 @@ const Navbar = () => {
             brentChange={brentChange}
             brentLoading={brentLoading}
           />
-        </div>
+        </div> */}
       </>
     );
   };

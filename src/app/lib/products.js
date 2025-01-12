@@ -2,6 +2,7 @@ export const products = [
   {
     id: 1,
     title: "LDO (Light Diesel Oil)",
+    image:"/image/product/ldo.jpg",
     shortDescription:
       "LDO is a high-quality, cost-effective fuel used primarily in industrial applications, providing efficient performance in generators, furnaces, and engines.",
     detailedDescription: {
@@ -27,6 +28,7 @@ export const products = [
   {
     id: 2,
     title: "Furnace Oil",
+    image:"/image/product/baseOil.jpg",
     shortDescription:
       "Furnace Oil is a heavy, viscous fuel used mainly in boilers, furnaces, and heavy industrial heating systems for energy generation and industrial heating.",
     detailedDescription: {
@@ -47,6 +49,7 @@ export const products = [
   {
     id: 3,
     title: "MTO (Motor Turbine Oil)",
+    image:"/image/product/mto.jpg",
     shortDescription:
       "MTO is a premium-quality oil designed to lubricate and protect high-performance turbine engines, ensuring smooth operation and extending equipment life.",
     detailedDescription: {
@@ -68,6 +71,7 @@ export const products = [
   {
     id: 4,
     title: "C9 Solvent",
+    image:"/image/product/c9.jpg",
     shortDescription:
       "C9 Solvent is a versatile aromatic solvent used in various industrial applications, including paints, coatings, and chemical processes.",
     detailedDescription: {
@@ -91,6 +95,7 @@ export const products = [
   {
     id: 5,
     title: "Naphtha",
+    image:"/image/product/baseOil.jpg",
     shortDescription:
       "Naphtha is a versatile petroleum product used in various industries, including paint, rubber, and sugar.",
     detailedDescription: {
