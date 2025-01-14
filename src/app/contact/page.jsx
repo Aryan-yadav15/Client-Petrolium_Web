@@ -94,7 +94,9 @@ const Contact = () => {
                         Our Location
                       </h4>
                       <p className="text-base text-body-color ">
-                        99 S.t Jomblo Park Pekanbaru 28292. Indonesia
+                        Registered office address - F-138 pandav nagar delhi
+                        110091 Factory address - plot no -61-62 Chityala
+                        industrial area, Nalgonda, Hyderabad, Telangana{" "}
                       </p>
                     </div>
                   </div>
@@ -134,7 +136,7 @@ const Contact = () => {
                         Phone Number
                       </h4>
                       <p className="text-base text-body-color ">
-                        (+62)81 414 257 9980
+                      8860670608 
                       </p>
                     </div>
                   </div>
@@ -167,8 +169,7 @@ const Contact = () => {
               </div>
               <div className="w-full px-4 lg:w-1/2 xl:w-5/12">
                 <p className="my-6 font-bold text-red-600">
-                  WE DEAL ONLY IN BULK 
-                  MOQ - 20,000 litres
+                  WE DEAL ONLY IN BULK MOQ - 20,000 litres
                 </p>
                 <div className="relative rounded-lg bg-white p-8 shadow-lg sm:p-12">
                   <form onSubmit={handleSubmit}>
