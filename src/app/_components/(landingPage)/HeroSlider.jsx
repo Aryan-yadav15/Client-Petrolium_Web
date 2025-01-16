@@ -343,7 +343,7 @@ const ImageSlider = () => {
         <div className="h-full flex items-center justify-between px-4 sm:px-6 lg:px-8">
           <button
             onClick={prevSlide}
-            className="pointer-events-auto p-2 rounded-full bg-black/30 hover:bg-black/50 transition-colors text-white backdrop-blur-sm"
+            className="pointer-events-auto p-2 rounded-full bg-transparent lg:bg-black/30 hover:bg-black/50 transition-colors text-white backdrop-blur-sm"
             aria-label="Previous slide"
           >
             <svg
@@ -362,7 +362,7 @@ const ImageSlider = () => {
           </button>
           <button
             onClick={nextSlide}
-            className="pointer-events-auto p-2 rounded-full bg-black/30 hover:bg-black/50 transition-colors text-white backdrop-blur-sm"
+            className="pointer-events-auto p-2 rounded-full bg-transparent lg:bg-black/30 hover:bg-black/50 transition-colors text-white backdrop-blur-sm"
             aria-label="Next slide"
           >
             <svg

@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { products } from "@/app/lib/products";
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const Products = () => {
   const [isTouchDevice, setIsTouchDevice] = useState(false);
@@ -35,7 +36,7 @@ const Products = () => {
   };
 
   return (
-    <section id="products"  className="py-10">
+    <section id="products" className="py-10">
       <div className="px-8 py-12 bg-white rounded-xl">
         {/* Header Section */}
         <div className="bg-neonBlue inline-block p-1 px-4 rounded-md">
@@ -65,39 +66,38 @@ const Products = () => {
             style={{ scrollBehavior: "smooth" }} // Ensure smooth scroll
           >
             {products.map((product, index) => (
-              <motion.div
-                key={index}
-                className="flex-shrink-0 relative w-[200px] sm:w-[300px] bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden mb-4 hover:scale-105 transition-all"
-              >
-                {/* Image Placeholder */}
-                <div className="relative h-[250px] sm:h-[400px]">
-                  <Image
-                    src="/image/vert1.jpg"
-                    layout="fill"
-                    objectFit="cover"
-                    alt="product_Image"
-                  />
-                  {/* Gradient Overlays */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/80"></div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-transparent to-sky-300/30"></div>
+              <Link href={`/product/${product.id}`}>
+                <motion.div
+                  key={index}
+                  className="flex-shrink-0 relative w-[200px] sm:w-[300px] bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden mb-4 hover:scale-105 transition-all"
+                >
+                  {/* Image Placeholder */}
+                  <div className="relative h-[250px] sm:h-[400px]">
+                    <Image
+                      src={product.image}
+                      layout="fill"
+                      objectFit="cover"
+                      alt="product_Image"
+                    />
+                    {/* Gradient Overlays */}
+                    <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/80"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-transparent to-sky-300/30"></div>
 
-                  {/* Content */}
-                  <div className="absolute bottom-0 left-0 right-0 text-white p-2 sm:p-4">
-                    <h3 className="text-lg sm:text-xl font-semibold">
-                      {product.title}
-                    </h3>
-                    <p className="text-gray-300 text-xs sm:text-sm leading-loose clamp-2 overflow-hidden text-ellipsis block">
-                      {product.shortDescription}
-                    </p>
-                    <a
-                      href={`/product/${product.id}`}
-                      className="text-sky-400 text-xs sm:text-sm font-medium mt-1 block hover:underline"
-                    >
-                      Read more →
-                    </a>
+                    {/* Content */}
+                    <div className="absolute bottom-0 left-0 right-0 text-white p-2 sm:p-4">
+                      <h3 className="text-lg sm:text-xl font-semibold">
+                        {product.title}
+                      </h3>
+                      <p className="text-gray-300 text-xs sm:text-sm leading-loose clamp-2 overflow-hidden text-ellipsis block">
+                        {product.shortDescription}
+                      </p>
+                      <p className="text-sky-400 text-xs sm:text-sm font-medium mt-1 block hover:underline">
+                        Read more →
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </motion.div>
+                </motion.div>
+              </Link>
             ))}
           </motion.div>
 

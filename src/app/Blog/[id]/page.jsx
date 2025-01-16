@@ -1,3 +1,4 @@
+// BlogPost.js
 import React from "react";
 import {
   ChevronLeft,
@@ -11,9 +12,11 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { blogs } from "@/app/lib/blog";
 import Image from "next/image";
 import Link from "next/link";
+import ShareButton from "./ShareButton"; // We'll create this component separately
 
-const BlogPost = async({ params }) => {
-  const { id } = await params;
+// Main BlogPost component remains a Server Component
+const BlogPost = async ({ params }) => {
+  const { id } = params;
   const blog = blogs.find((blog) => blog.id === parseInt(id));
 
   if (!blog) {
@@ -24,10 +27,12 @@ const BlogPost = async({ params }) => {
       >
         <div className="bg-white/90 p-8 rounded-lg shadow-lg">
           <h1 className="text-2xl font-bold mb-4">Blog post not found</h1>
-          <Button variant="outline" className="flex items-center gap-2">
-            <ChevronLeft size={16} />
-            Back to Blog
-          </Button>
+          <Link href="/Blog">
+            <Button variant="outline" className="flex items-center gap-2">
+              <ChevronLeft size={16} />
+              Back to Blog
+            </Button>
+          </Link>
         </div>
       </div>
     );
@@ -42,7 +47,6 @@ const BlogPost = async({ params }) => {
     >
       <div className="bg-black/50 min-h-screen">
         <div className="max-w-4xl mx-auto px-4 py-20 text-white">
-          {/* Header Section */}
           <div className="mb-8 bg-white/90 p-8 rounded-lg shadow-lg text-gray-800">
             <div className="flex items-center gap-2 text-gray-600 mb-6">
               <Link href="/Blog">
@@ -57,9 +61,7 @@ const BlogPost = async({ params }) => {
               </Link>
             </div>
 
-            {/* Author Info */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6 w-full">
-              {/* Author Avatar and Info Section */}
               <div className="flex items-center gap-4 w-full sm:w-auto">
                 <Avatar className="h-10 w-10 md:h-12 md:w-12 flex-shrink-0">
                   <AvatarImage src={blog.author?.avatar} />
@@ -87,28 +89,21 @@ const BlogPost = async({ params }) => {
                 </div>
               </div>
 
-              {/* Share Button */}
               <div className="w-full sm:w-auto sm:ml-auto mt-4 sm:mt-0">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="flex gap-1 w-full sm:w-auto justify-center"
-                >
-                  <Share2 size={16} className="flex-shrink-0" />
-                  Share
-                </Button>
+                <ShareButton />
               </div>
             </div>
-            {/* Tags */}
+
             {blog.tags && (
-              <div className="flex gap-2  top-4 left-4 z-20">
+              <div className="flex gap-2 top-4 left-4 z-20">
                 {blog.tags.split(",").map((tag, index) => (
-                  <p className="bg-black rounded-[10px] text-gray-200 text-sm font-semibold px-3 ">
+                  <p className="bg-black rounded-[10px] text-gray-200 text-sm font-semibold px-3" key={index}>
                     {tag}
                   </p>
                 ))}
               </div>
             )}
+
             <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
               {blog.title}
             </h1>
@@ -121,20 +116,16 @@ const BlogPost = async({ params }) => {
             />
           </div>
 
-          {/* Main Content */}
           <Card className="shadow-lg">
             <CardContent className="p-8 bg-white/90 text-gray-800">
-              {/* Description */}
               <p className="text-xl leading-relaxed mb-8">{blog.description}</p>
 
-              {/* Content Sections */}
               {blog.subheaders?.map((subheader, index) => (
                 <div key={index} className="mb-8">
                   <h2 className="text-xl lg:text-3xl font-bold mb-4">{subheader.title}</h2>
                 </div>
               ))}
 
-              {/* Paragraphs */}
               {blog.paragraphs?.map((paragraph, index) => (
                 <div key={index} className="mb-6">
                   <p className="text-lg leading-relaxed">
@@ -162,7 +153,6 @@ const BlogPost = async({ params }) => {
                 </div>
               ))}
 
-              {/* Content List */}
               {blog.content && (
                 <div className="bg-gray-50 p-6 rounded-lg mt-8">
                   <ul className="space-y-4">
