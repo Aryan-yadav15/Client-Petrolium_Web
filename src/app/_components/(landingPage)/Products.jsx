@@ -65,12 +65,11 @@ const Products = () => {
             onScroll={handleScroll} // Handle manual scrolling
             style={{ scrollBehavior: "smooth" }} // Ensure smooth scroll
           >
-            {products.map((product, index) => (
-              <Link href={`/product/${product.id}`}>
-                <motion.div
-                  key={index}
-                  className="flex-shrink-0 relative w-[200px] sm:w-[300px] bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden mb-4 hover:scale-105 transition-all"
-                >
+            {products.map((product) => (
+              <Link href={`/product/${product.id}`} key={product.id}>
+                {" "}
+                {/* Use product.id as the key */}
+                <motion.div className="flex-shrink-0 relative w-[200px] sm:w-[300px] bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden mb-4 hover:scale-105 transition-all">
                   {/* Image Placeholder */}
                   <div className="relative h-[250px] sm:h-[400px]">
                     <Image
