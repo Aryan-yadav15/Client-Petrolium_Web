@@ -1,6 +1,7 @@
 "use client"
 import React, { useState } from 'react';
 import { MessageCircle, Send, X } from 'lucide-react';
+import Image from 'next/image';
 
 const WhatsAppButton = ({ 
   phoneNumber, 
@@ -35,7 +36,7 @@ const WhatsAppButton = ({
         aria-expanded={isModalOpen}
         aria-controls="whatsapp-modal"
       >
-        {isModalOpen ? <X className="w-6 h-6" /> : <MessageCircle className="w-6 h-6" />}
+        {isModalOpen ? <X className="w-6 h-6" /> : <Image src={"/wp.svg"} width={30} height={30} alt='wp Logo'/> }
       </button>
 
       {isModalOpen && (
