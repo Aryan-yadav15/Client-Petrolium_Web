@@ -18,7 +18,7 @@ export default function Home() {
         <OurValues />
         <Footer />
       </div>
-      <WhatsAppButton phoneNumber="+91 8860670608" message="Hello!" />{" "}
+      <WhatsAppButton phoneNumber="+918860670608" message="Hello!" />{" "}
     </>
   );
 }
